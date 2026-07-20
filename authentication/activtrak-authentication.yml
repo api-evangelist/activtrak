@@ -1,0 +1,17 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/activtrak-openapi-original.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: 'Public API key sent in the x-api-key header. Some endpoints also accept `Authorization:
+    Bearer {apiKey}`. Keys are created in the ActivTrak app under API & Integrations > API Keys.'
+  sources:
+  - openapi/activtrak-openapi-original.yaml
