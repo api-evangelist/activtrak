@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: probed
+source: live HTTPS probes of ActivTrak base + docs hosts
+notes: >-
+  Probed each host for the standard well-known discovery documents. No
+  well-known documents are published (all 404 on the API/marketing hosts; the
+  docs host returns 403 from its bot/edge protection rather than a real
+  document). Absence is valid, expected data for an API-key REST API with no
+  OAuth/OIDC surface. No files were saved because nothing returned 200.
+probes:
+- host: api.activtrak.com
+  results:
+  - {path: /.well-known/security.txt, status: 404, file: null}
+  - {path: /.well-known/openid-configuration, status: 404, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+  - {path: /.well-known/api-catalog, status: 404, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+- host: www.activtrak.com
+  results:
+  - {path: /.well-known/security.txt, status: 404, file: null}
+  - {path: /.well-known/openid-configuration, status: 404, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+  - {path: /.well-known/api-catalog, status: 404, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+- host: developers.activtrak.com
+  results:
+  - {path: /.well-known/security.txt, status: 403, file: null}
+  - {path: /.well-known/openid-configuration, status: 403, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 403, file: null}
+  - {path: /.well-known/api-catalog, status: 403, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 403, file: null}

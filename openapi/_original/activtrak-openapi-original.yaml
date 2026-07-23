@@ -1,0 +1,2549 @@
+openapi: 3.1.0
+info:
+  title: ActivTrak Public APIs
+  version: v2
+  description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports
+    (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients,
+    consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
+  contact:
+    name: ActivTrak Support
+    email: support@activtrak.com
+    url: https://developers.activtrak.com/
+  termsOfService: https://www.activtrak.com/terms-of-use/
+servers:
+- url: https://api.activtrak.com
+  description: United States (default)
+- url: https://api-eu.activtrak.com
+  description: European Union
+- url: https://api-uk.activtrak.com
+  description: United Kingdom
+- url: https://api-ca.activtrak.com
+  description: Canada
+- url: https://api-au.activtrak.com
+  description: Australia
+tags:
+- name: Reports
+  description: Live Data API - query activity reports (Working Hours, Activity Log).
+- name: Administration
+  description: Administer the ActivTrak account (clients, consumers). Beta.
+- name: Administration - SCIM
+  description: SCIM 2.0 user and group management. Beta.
+- name: Bulk Import
+  description: HR Data Connector - submit CSV bulk user data.
+paths:
+  /admin/v1/clients:
+    get:
+      operationId: getAllClients
+      summary: This API call returns a paged list of `Clients`. It returns the first page with up to 50
+        clients.
+      tags:
+      - Administration
+      description: This API call returns a paged list of `Clients`. It returns the first page with up
+        to 50 clients.
+      responses:
+        '200':
+          description: Returns a paged list of clients for the account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: The ActivTrak ID number of a user agent. The first user agent in an organization
+                      starts at 1 and then increases sequentially.
+                  domain:
+                    type: string
+                    nullable: true
+                    description: The logon domain on which the user agent’s unique activity was identified.
+                  name:
+                    type: string
+                    nullable: true
+                    description: The name of a user that is derived from a computer’s user profile (user
+                      ID).
+                  alias:
+                    type: string
+                    nullable: true
+                    description: The alias that was previously provided for the user.
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /admin/v1/consumers:
+    post:
+      operationId: createConsumers
+      summary: Create `Consumers` from the list provided. Response shall contain a list of success, falures
+        and warning/error messages.
+      tags:
+      - Administration
+      description: 'Create `Consumers` from the list provided. Response shall contain a list of success,
+        falures and warning/error messages.
+
+
+        When specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`,
+        `Viewer`and only one role is allow in the `roles` array.
+
+
+        Consumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1`
+        and `groupname` `All Users and Groups (current and future)` so they can view all current and future
+        groups.
+
+
+        Consumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid`
+        or `groupname` or to all current and future groups by providing `-1` in the `groupid`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          firstName:
+                            type: string
+                          lastName:
+                            type: string
+                          email:
+                            type: string
+                          roles:
+                            type: array
+                            description: 'Only the following roles are allowed: `Admin`, `Configurator`,
+                              `PowerUser`, `Viewer`'
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    name:
+                                      type: string
+                                    displayname:
+                                      type: string
+                                  description: Only one of the following is required `id` or `name`.
+                          ssoEnabled:
+                            type: boolean
+                          viewableGroups:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    groupid:
+                                      type: integer
+                                    groupname:
+                                      type: string
+                                    goalsetter:
+                                      type: boolean
+                                  description: Only one of the following is required `groupid` or `groupname`.
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    delete:
+      operationId: deleteConsumers
+      summary: Delete `Consumers` from the list provided. Response shall contain a list of success, falures
+        and warning/error messages.
+      tags:
+      - Administration
+      description: 'Delete `Consumers` from the list provided. Response shall contain a list of success,
+        falures and warning/error messages.
+
+
+        The following list can have one or both, but must have one or the other: `consumerIds`, `usernames`'
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getAllConsumers
+      summary: This returns a list of all `Consumers`. The optional paramater `includeViewableGroups`
+        will return the list of Groups th
+      tags:
+      - Administration
+      description: 'This returns a list of all `Consumers`. The optional paramater `includeViewableGroups`
+        will return the list of Groups that the corresponding `consumer` has access to. If `includeViewableGroups`
+        is not included in the URL query parameters, the default value will be `false`.
+
+
+        When `includeViewableGroups` is set to `true`, consumers with the roles of `PowerUser` and `Viewer`
+        will have all their groups listed in `viewableGroups` . Consumers with `groupid` `-1` `groupname`
+        `All Users and Groups (current and future)` indicates that they have access to all current and
+        future Users and Groups.
+
+
+        Lastly, consumers with the roles of `Admin` and `Configurator` will have `groupid` `-1` `groupname`
+        `All Users and Groups (current and future)`'
+      parameters:
+      - name: includeViewableGroups
+        in: query
+        required: false
+        description: Set to true to display Viewable Groups in the Response
+        schema:
+          type: boolean
+          format: int32
+      responses:
+        '200':
+          description: A list of all consumers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consumers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            firstName:
+                              type: string
+                            lastName:
+                              type: string
+                            username:
+                              type: string
+                            email:
+                              type: string
+                            roles:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                      name:
+                                        type: string
+                                      displayname:
+                                        type: string
+                            ssoEnabled:
+                              type: boolean
+                            viewableGroups:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      groupid:
+                                        type: integer
+                                      groupname:
+                                        type: string
+                                      goalsetter:
+                                        type: boolean
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    patch:
+      operationId: patchConsumers
+      summary: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures
+        and warning/error messages.
+
+
+        '
+      tags:
+      - Administration
+      description: 'Patch`Consumers` from the list provided. Response shall contain a list of success,
+        falures and warning/error messages.
+
+
+        Either `id` or `username` may be used to identify a consumer to patch.
+
+
+        Patching can be used for any combination of the following fields: `viewableGroups`, `roles`, `ssoEnabled`
+
+
+        When specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`,
+        `Viewer`and only one role is allow in the `roles` array.
+
+
+        Consumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1`
+        and `groupname` `All Users and Groups (current and future)` so they can view all current and future
+        groups.
+
+
+        Consumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid`
+        or `groupname` or to all current and future groups by providing `-1` in the `groupid`.
+
+
+        If the `groupid` has the value of `-1`, the consumer''s `viewableGroups` shall be `All Users and
+        Groups (current and future)`'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumers:
+                  type: array
+                  description: Only one of the following is required `id` or `username`.
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          username:
+                            type: string
+                          roles:
+                            type: array
+                            description: 'Only the following roles are allowed: `Admin`, `Configurator`,
+                              `PowerUser`, `Viewer`'
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    name:
+                                      type: string
+                                    displayname:
+                                      type: string
+                                  description: Only one of the following is required `id` or `name`.
+                          ssoEnabled:
+                            type: boolean
+                          viewableGroups:
+                            type: array
+                            description: Only one of the following is required `groupid` or `groupname`.
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    groupid:
+                                      type: integer
+                                    groupname:
+                                      type: string
+                                    goalsetter:
+                                      type: boolean
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /admin/v1/consumers/{id}:
+    get:
+      operationId: getConsumer
+      summary: Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse
+        object is returned indicating the
+      tags:
+      - Administration
+      description: 'Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse
+        object is returned indicating the error.
+
+
+        If the consumer has a role of `PowerUser` or `Viewer` , they will have all their groups listed
+        in `viewableGroups` . If their `groupid` is `-1` and `groupname` `All Users and Groups (current
+        and future)` it indicates that they have access to all current and future Users and Groups.
+
+
+        Lastly, if the consumer has a role of `Admin` and `Configurator` they will will have `groupid`
+        `-1` `groupname` `All Users and Groups (current and future)`'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of an existing consumer whose information will be returned.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The consumer's data object that matches the identifier.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consumer:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      firstName:
+                        type: string
+                      lastName:
+                        type: string
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      roles:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            '0':
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                name:
+                                  type: string
+                                displayname:
+                                  type: string
+                      ssoEnabled:
+                        type: boolean
+                      viewableGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            '0':
+                              type: object
+                              properties:
+                                groupid:
+                                  type: integer
+                                groupname:
+                                  type: string
+                                goalsetter:
+                                  type: boolean
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason
+            of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '404':
+          description: Failed StatusResponse with an error message indicating that the consumer couldn't
+            be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/groups:
+    post:
+      operationId: createGroup
+      summary: Creates a new ActivTrak Group.
+      tags:
+      - Administration - SCIM
+      description: Creates a new ActivTrak Group.
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                displayName:
+                  type: string
+                  nullable: true
+      responses:
+        '201':
+          description: Returns the newly created Group.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '409':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getGroups
+      summary: Returns a list of ActivTrak Groups.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of ActivTrak Groups.
+      parameters:
+      - name: count
+        in: query
+        required: false
+        description: The amount of groups to return per page
+        schema:
+          type: string
+      - name: startIndex
+        in: query
+        required: false
+        description: The page number of results to return
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of ActivTrak Groups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  itemsPerPage:
+                    type: integer
+                  startIndex:
+                    type: integer
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            schemas:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: string
+                                    nullable: true
+                            id:
+                              type: string
+                              nullable: true
+                            displayName:
+                              type: string
+                              nullable: true
+                            members:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      value:
+                                        type: string
+                                        nullable: true
+                                      display:
+                                        type: string
+                                        nullable: true
+                                      $ref:
+                                        type: string
+                                        nullable: true
+                                      type:
+                                        type: string
+                                        nullable: true
+                            meta:
+                              type: object
+                              properties:
+                                resourceType:
+                                  type: string
+                                created:
+                                  type: string
+                                lastModified:
+                                  type: string
+                                location:
+                                  type: string
+                                version:
+                                  type: string
+                            urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                              type: object
+                              properties:
+                                sourceType:
+                                  type: number
+                                instanceId:
+                                  type: string
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/groups/{groupId}:
+    delete:
+      operationId: deleteGroup
+      summary: Deletes an ActivTrak Group.
+      tags:
+      - Administration - SCIM
+      description: Deletes an ActivTrak Group.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Returns the HTTP status code result.
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getGroup
+      summary: Returns a single ActivTrak Group by ID.
+      tags:
+      - Administration - SCIM
+      description: Returns a single ActivTrak Group by ID.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a single ActivTrak Group by ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                        nullable: true
+                      created:
+                        type: string
+                        format: date-time
+                      lastModified:
+                        type: string
+                        format: date-time
+                      location:
+                        type: string
+                        nullable: true
+                      version:
+                        type: string
+                        nullable: true
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: updateGroup
+      summary: Updates an existing ActivTrak Group by replacing it with the provided entity.
+      tags:
+      - Administration - SCIM
+      description: Updates an existing ActivTrak Group by replacing it with the provided entity.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                displayName:
+                  type: string
+                  nullable: true
+                members:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            nullable: true
+      responses:
+        '200':
+          description: Returns the updated ActivTrak Group.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/ping:
+    get:
+      operationId: ping
+      summary: Returns the API's uptime status.
+      tags:
+      - Administration - SCIM
+      description: Returns the API's uptime status.
+      responses:
+        '200':
+          description: Returns the message "Pong" indicating successful API ping.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/schemas/{schemaUri}:
+    get:
+      operationId: getSchema
+      summary: Returns a specified SCIM schema by URI.
+      tags:
+      - Administration - SCIM
+      description: Returns a specified SCIM schema by URI.
+      parameters:
+      - name: schemaUri
+        in: path
+        required: true
+        schema:
+          type: string
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a specified SCIM schema by URI.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: true
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  attributes:
+                    type: array
+                    items: {}
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/schemas:
+    get:
+      operationId: getSchemas
+      summary: Returns a list of supported SCIM schemas.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of supported SCIM schemas.
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of supported SCIM schemas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              nullable: true
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            attributes:
+                              type: array
+                              items: {}
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/users:
+    post:
+      operationId: createUser
+      summary: 'Creates a new ActivTrak User.
+
+
+        If the User already exists in ActivTrak, the new information associated with the User is '
+      tags:
+      - Administration - SCIM
+      description: 'Creates a new ActivTrak User.
+
+
+        If the User already exists in ActivTrak, the new information associated with the User is updated.'
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                      '1':
+                        type: string
+                      '2':
+                        type: string
+                name:
+                  type: object
+                  properties:
+                    familyName:
+                      type: string
+                    givenName:
+                      type: string
+                    middleName:
+                      type: string
+                displayName:
+                  type: string
+                  nullable: true
+                emails:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          primary:
+                            type: boolean
+                          value:
+                            type: string
+                urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                  type: object
+                  properties:
+                    employeeNumber:
+                      type: string
+                urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                  type: object
+                  properties:
+                    userPrincipalNames:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          '0':
+                            type: string
+      responses:
+        '201':
+          description: Returns the newly created User.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                      givenName:
+                        type: string
+                      middleName:
+                        type: string
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                            display:
+                              type: string
+                            $ref:
+                              type: string
+                            type:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '409':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getUsers
+      summary: Returns a list of ActivTrak Users.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of ActivTrak Users.
+      parameters:
+      - name: count
+        in: query
+        required: false
+        description: The amount of users to return per page
+        schema:
+          type: string
+      - name: startIndex
+        in: query
+        required: false
+        description: The page number of results to return
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of ActivTrak Users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  itemsPerPage:
+                    type: integer
+                  startIndex:
+                    type: integer
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            schemas:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: string
+                                    nullable: true
+                            id:
+                              type: string
+                              nullable: true
+                            userName:
+                              type: string
+                              nullable: true
+                            name:
+                              type: object
+                              properties:
+                                familyName:
+                                  type: string
+                                  nullable: true
+                                givenName:
+                                  type: string
+                                  nullable: true
+                                middleName:
+                                  type: string
+                                  nullable: true
+                            displayName:
+                              type: string
+                              nullable: true
+                            emails:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      primary:
+                                        type: boolean
+                                      value:
+                                        type: string
+                                        nullable: true
+                            active:
+                              type: boolean
+                            groups:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      value:
+                                        type: string
+                                        nullable: true
+                                      display:
+                                        type: string
+                                        nullable: true
+                                      $ref:
+                                        type: string
+                                        nullable: true
+                                      type:
+                                        type: string
+                                        nullable: true
+                            meta:
+                              type: object
+                              properties:
+                                resourceType:
+                                  type: string
+                                  nullable: true
+                                created:
+                                  type: string
+                                  format: date-time
+                                lastModified:
+                                  type: string
+                                  format: date-time
+                                location:
+                                  type: string
+                                  nullable: true
+                                version:
+                                  type: string
+                                  nullable: true
+                            urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                              type: object
+                              properties:
+                                employeeNumber:
+                                  type: string
+                            urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                              type: object
+                              properties:
+                                tracking:
+                                  type: boolean
+                                userPrincipalNames:
+                                  type: array
+                                  items: {}
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/users/{userId}:
+    delete:
+      operationId: deleteUser
+      summary: Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.
+      tags:
+      - Administration - SCIM
+      description: Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Returns the HTTP status code result.
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getUser
+      summary: Returns a single ActivTrak User by ID.
+      tags:
+      - Administration - SCIM
+      description: Returns a single ActivTrak User by ID.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a single ActivTrak User by ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                    nullable: true
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                        nullable: true
+                      givenName:
+                        type: string
+                        nullable: true
+                      middleName:
+                        type: string
+                        nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                              nullable: true
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                        nullable: true
+                      created:
+                        type: string
+                        format: date-time
+                      lastModified:
+                        type: string
+                        format: date-time
+                      location:
+                        type: string
+                        nullable: true
+                      version:
+                        type: string
+                        nullable: true
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: updateUser
+      summary: Updates an existing ActivTrak User by replacing it with the provided entity.
+      tags:
+      - Administration - SCIM
+      description: Updates an existing ActivTrak User by replacing it with the provided entity.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                      '1':
+                        type: string
+                      '2':
+                        type: string
+                name:
+                  type: object
+                  properties:
+                    familyName:
+                      type: string
+                    givenName:
+                      type: string
+                    middleName:
+                      type: string
+                displayName:
+                  type: string
+                  nullable: true
+                emails:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          primary:
+                            type: boolean
+                          value:
+                            type: string
+                urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                  type: object
+                  properties:
+                    employeeNumber:
+                      type: string
+                urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                  type: object
+                  properties:
+                    userPrincipalNames:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          '0':
+                            type: string
+      responses:
+        '200':
+          description: Returns the updated ActivTrak User.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                      givenName:
+                        type: string
+                      middleName:
+                        type: string
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                            display:
+                              type: string
+                            $ref:
+                              type: string
+                            type:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /hrdc/v2/bulk:
+    post:
+      operationId: importUserData
+      summary: This API call will allow the import of user data for automating user management. This endpoint
+        accepts files in CSV form
+      tags:
+      - Bulk Import
+      description: This API call will allow the import of user data for automating user management. This
+        endpoint accepts files in CSV format.
+      requestBody:
+        content:
+          application/multipart/form-data:
+            schema:
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+                  description: The filename for the CSV that contains user data
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /reports/v2/activitylog:
+    get:
+      operationId: getActivityLog
+      summary: This API call returns a list of Activity Log objects
+      tags:
+      - Reports
+      description: This API call returns a list of Activity Log objects
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        description: 'The starting date. Format: YYYY-MM-DD. If a cursor is provided for pagination, this
+          field does not affect your query results. The default value is {TODAY}'
+        schema:
+          type: string
+          format: date-time
+          default: The current timestamp
+      - name: endDate
+        in: query
+        required: false
+        description: 'The end date (inclusive). Format: YYYY-MM-DD. This field should only be used to
+          bind your data to a specific date range. Otherwise, you only require the start date and you
+          can paginate through to all available data from that point.'
+        schema:
+          type: string
+          format: date-time
+      - name: clientId
+        in: query
+        required: false
+        description: The specific client id to fetch data. The default value of -1 returns data "all users"
+          Only one of the fields (clientId, groupId, deviceId) can be sent per request
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: false
+        description: The specific device id to fetch data. Only one of the fields (clientId, groupId,
+          deviceId) can be sent per request
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        required: false
+        description: The specific group id to fetch data. Only one of the fields (clientId, groupId, deviceId)
+          can be sent per request
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        required: false
+        description: The page size for number of results to return per request. The maximum value is 1000.
+          The default value is 150.
+        schema:
+          type: integer
+          format: int32
+          default: 150
+      - name: cursor
+        in: query
+        required: false
+        description: The cursor for pagination. When a request is made without a cursor, the response
+          returns results based on the date range. Each response returns a cursor. You should input the
+          new cursor value for each subsequent request if you wish to paginate through additional data.
+          If you do provide a cursor, the startDate no longer affects the result boundaries. This allows
+          you to receive old records that have arrived late. If you receive no results with a valid/provided
+          cursor, it means that no new records have been received yet. A cursor request which returns
+          no results will return the same cursor back to the caller.
+        schema:
+          type: string
+      - name: minDuration
+        in: query
+        required: false
+        description: The minimum duration in seconds (inclusive). Only activities that have a duration
+          greater than or equal to this value will be returned.
+        schema:
+          type: string
+      - name: maxDuration
+        in: query
+        required: false
+        description: The maximum duration in seconds (inclusive). Only activities that have a duration
+          less than or equal to this value will be returned.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A response with the Report for Users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activity:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        logId:
+                          type: integer
+                          format: int64
+                        productivity:
+                          type: integer
+                          format: int32
+                        screenshotUrl:
+                          type: string
+                          nullable: true
+                        popupAlarm:
+                          type: boolean
+                          nullable: true
+                        emailAlarm:
+                          type: boolean
+                          nullable: true
+                        externalNotificationAlarm:
+                          type: boolean
+                          nullable: true
+                        terminate:
+                          type: boolean
+                          nullable: true
+                        time:
+                          type: string
+                          format: date-time
+                        computerId:
+                          type: integer
+                          format: int32
+                        computer:
+                          type: string
+                          nullable: true
+                        primaryDomain:
+                          type: string
+                          nullable: true
+                        privateIp:
+                          type: string
+                          nullable: true
+                        publicIp:
+                          type: string
+                          nullable: true
+                        loginDomain:
+                          type: string
+                          nullable: true
+                        user:
+                          type: string
+                          nullable: true
+                        session:
+                          type: integer
+                          format: int32
+                        duration:
+                          type: integer
+                          format: int32
+                        applicationId:
+                          type: integer
+                          format: int32
+                        websiteId:
+                          type: integer
+                          format: int32
+                          nullable: true
+                        titleBar:
+                          type: string
+                          nullable: true
+                        executable:
+                          type: string
+                          nullable: true
+                        description:
+                          type: string
+                          nullable: true
+                        website:
+                          type: string
+                          nullable: true
+                        subpage:
+                          type: string
+                          nullable: true
+                        url:
+                          type: string
+                          nullable: true
+                        location:
+                          type: string
+                          nullable: true
+                        time_zone:
+                          type: string
+                          nullable: true
+                        time_utc:
+                          type: string
+                          format: date-time
+                  cursor:
+                    type: string
+                    nullable: true
+        '400':
+          description: Bad request. Failed StatusResponse with an error message indicating the reason
+            of the failure.
+        '500':
+          description: Internal Server Error.
+      security:
+      - ApiKeyAuth: []
+  /reports/v2/workinghours/computers:
+    get:
+      operationId: getWorkingHoursForComputers
+      summary: This API call returns a list of Working Hour Activity objects along with a total (used
+        for pagination). This data will b
+      tags:
+      - Reports
+      description: This API call returns a list of Working Hour Activity objects along with a total (used
+        for pagination). This data will be from the computer perspective.
+      parameters:
+      - name: from
+        in: query
+        required: true
+        description: 'The starting date. Format: YYYY-MM-DD.'
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: true
+        description: 'The end date (inclusive). Format: YYYY-MM-DD.'
+        schema:
+          type: string
+          format: date-time
+      - name: deviceId
+        in: query
+        required: false
+        description: The specific device id to fetch data. Only one of the fields (clientId, groupId,
+          deviceId) can be sent per request.
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        required: false
+        description: The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId)
+          can be sent per request.
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: The page number used in pagination.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: The page size for the number of results to return per request. The maximum value
+          is 1000.
+        schema:
+          type: integer
+          format: int32
+          default: 150
+      responses:
+        '200':
+          description: A response with the Report for Computers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activity:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        userId:
+                          type: integer
+                          format: int64
+                          nullable: true
+                        computerId:
+                          type: integer
+                          format: int64
+                          nullable: true
+                        user:
+                          type: string
+                          nullable: true
+                        computer:
+                          type: string
+                          nullable: true
+                        groups:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        computers:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        users:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        firstActivity:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        lastActivity:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        lastActivityLog:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        activeTime:
+                          type: object
+                          properties:
+                            productive:
+                              type: integer
+                              format: int64
+                            unproductive:
+                              type: integer
+                              format: int64
+                            undefined:
+                              type: integer
+                              format: int64
+                            total:
+                              type: integer
+                              format: int64
+                        passiveTime:
+                          type: object
+                          properties:
+                            productive:
+                              type: integer
+                              format: int64
+                            unproductive:
+                              type: integer
+                              format: int64
+                            undefined:
+                              type: integer
+                              format: int64
+                            total:
+                              type: integer
+                              format: int64
+                        totalTime:
+                          type: integer
+                          format: int64
+                  total:
+                    type: integer
+                    format: int64
+        '400':
+          description: Bad request. Failed StatusResponse with an error message indicating the reason
+            of the failure.
+        '500':
+          description: Internal Server Error.
+      security:
+      - ApiKeyAuth: []
+  /reports/v2/workinghours/users:
+    get:
+      operationId: getWorkingHoursForUsers
+      summary: This API call returns a list of Working Hour Activity objects along with a total (used
+        for pagination). This data is fro
+      tags:
+      - Reports
+      description: This API call returns a list of Working Hour Activity objects along with a total (used
+        for pagination). This data is from the user's perspective.
+      parameters:
+      - name: from
+        in: query
+        required: true
+        description: 'The starting date. Format: YYYY-MM-DD.'
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: true
+        description: 'The end date (inclusive). Format: YYYY-MM-DD.'
+        schema:
+          type: string
+          format: date-time
+      - name: clientId
+        in: query
+        required: false
+        description: The specific client Id to fetch data. The default value of -1 returns data "all users".
+          Only one of the fields(clientId, groupId, deviceId) can be sent per request.
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        required: false
+        description: The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId)
+          can be sent per request.
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: The page number used in pagination.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: The page size for the number of results to return per request. The maximum value
+          is 1000.
+        schema:
+          type: integer
+          format: int32
+          default: 150
+      responses:
+        '200':
+          description: A response with the Report for Users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activity:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        userId:
+                          type: integer
+                          format: int64
+                          nullable: true
+                        computerId:
+                          type: integer
+                          format: int64
+                          nullable: true
+                        user:
+                          type: string
+                          nullable: true
+                        computer:
+                          type: string
+                          nullable: true
+                        groups:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        computers:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        users:
+                          type: array
+                          nullable: true
+                          items:
+                            type: array
+                            nullable: true
+                            items: {}
+                        firstActivity:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        lastActivity:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        lastActivityLog:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        activeTime:
+                          type: object
+                          properties:
+                            productive:
+                              type: integer
+                              format: int64
+                            unproductive:
+                              type: integer
+                              format: int64
+                            undefined:
+                              type: integer
+                              format: int64
+                            total:
+                              type: integer
+                              format: int64
+                        passiveTime:
+                          type: object
+                          properties:
+                            productive:
+                              type: integer
+                              format: int64
+                            unproductive:
+                              type: integer
+                              format: int64
+                            undefined:
+                              type: integer
+                              format: int64
+                            total:
+                              type: integer
+                              format: int64
+                        totalTime:
+                          type: integer
+                          format: int64
+                        TotalOfflineMeetings:
+                          type: integer
+                        location:
+                          type: string
+                  total:
+                    type: integer
+                    format: int64
+        '400':
+          description: Bad request. Failed with an error message indicating the reason of the failure.
+        '500':
+          description: Internal Server Error.
+      security:
+      - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: 'Public API key sent in the x-api-key header. Some endpoints also accept `Authorization:
+        Bearer {apiKey}`. Keys are created in the ActivTrak app under API & Integrations > API Keys.'
+security:
+- ApiKeyAuth: []

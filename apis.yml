@@ -1,27 +1,196 @@
 aid: activtrak
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/activtrak.png
 name: ActivTrak
-description: 'ActivTrak is a company surfaced as a portfolio company of sapphire-ventures and added to
-  the API Evangelist network as a stub for enrichment. Sector: saas. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  ActivTrak is a workforce analytics and productivity-monitoring SaaS platform.
+  Its Public APIs (v2) expose REST endpoints across three surfaces: the Live
+  Data / Reports API (Working Hours and Activity Log), account administration
+  (Clients, Consumers, and full SCIM 2.0 user and group management), and a Bulk
+  Import HR Data Connector for CSV-driven user provisioning. Authentication is
+  via an API key sent in the x-api-key header (a Bearer form is also accepted on
+  some endpoints). Regional hosts are available for the United States, European
+  Union, United Kingdom, Canada, and Australia. ActivTrak is backed by Sapphire
+  Ventures and is profiled in the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/activtrak/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - sapphire-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-openapi
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
 - Saas
-apis: []
+- Workforce Analytics
+- Productivity
+- Employee Monitoring
+- Workforce Management
+- SCIM
+- Reporting
+apis:
+- aid: activtrak:activtrak-administration-api
+  name: ActivTrak Administration API
+  description: Administer the ActivTrak account (clients, consumers). Beta.
+  humanURL: https://developers.activtrak.com/
+  baseURL: https://api.activtrak.com
+  tags:
+  - Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/activtrak-administration-api-openapi.yml
+  - type: Conformance
+    url: conformance/activtrak-conformance.yml
+  - type: ErrorCatalog
+    url: errors/activtrak-problem-types.yml
+  - type: Conventions
+    url: conventions/activtrak-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/activtrak-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/activtrak-changelog.yml
+  - type: DataModel
+    url: data-model/activtrak-data-model.yml
+  - type: Documentation
+    url: https://developers.activtrak.com/
+  - type: APIReference
+    url: https://developers.activtrak.com/
+- aid: activtrak:activtrak-administration-scim-api
+  name: ActivTrak Administration - SCIM API
+  description: SCIM 2.0 user and group management. Beta.
+  humanURL: https://developers.activtrak.com/
+  baseURL: https://api.activtrak.com
+  tags:
+  - Administration - SCIM
+  properties:
+  - type: OpenAPI
+    url: openapi/activtrak-administration-scim-api-openapi.yml
+  - type: Conformance
+    url: conformance/activtrak-conformance.yml
+  - type: ErrorCatalog
+    url: errors/activtrak-problem-types.yml
+  - type: Conventions
+    url: conventions/activtrak-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/activtrak-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/activtrak-changelog.yml
+  - type: DataModel
+    url: data-model/activtrak-data-model.yml
+  - type: Documentation
+    url: https://developers.activtrak.com/
+  - type: APIReference
+    url: https://developers.activtrak.com/
+- aid: activtrak:activtrak-bulk-import-api
+  name: ActivTrak Bulk Import API
+  description: HR Data Connector - submit CSV bulk user data.
+  humanURL: https://developers.activtrak.com/
+  baseURL: https://api.activtrak.com
+  tags:
+  - Bulk Import
+  properties:
+  - type: OpenAPI
+    url: openapi/activtrak-bulk-import-api-openapi.yml
+  - type: Conformance
+    url: conformance/activtrak-conformance.yml
+  - type: ErrorCatalog
+    url: errors/activtrak-problem-types.yml
+  - type: Conventions
+    url: conventions/activtrak-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/activtrak-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/activtrak-changelog.yml
+  - type: DataModel
+    url: data-model/activtrak-data-model.yml
+  - type: Documentation
+    url: https://developers.activtrak.com/
+  - type: APIReference
+    url: https://developers.activtrak.com/
+- aid: activtrak:activtrak-reports-api
+  name: ActivTrak Reports API
+  description: Live Data API - query activity reports (Working Hours, Activity Log).
+  humanURL: https://developers.activtrak.com/
+  baseURL: https://api.activtrak.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/activtrak-reports-api-openapi.yml
+  - type: Conformance
+    url: conformance/activtrak-conformance.yml
+  - type: ErrorCatalog
+    url: errors/activtrak-problem-types.yml
+  - type: Conventions
+    url: conventions/activtrak-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/activtrak-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/activtrak-changelog.yml
+  - type: DataModel
+    url: data-model/activtrak-data-model.yml
+  - type: Documentation
+    url: https://developers.activtrak.com/
+  - type: APIReference
+    url: https://developers.activtrak.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Authentication
+  url: authentication/activtrak-authentication.yml
+- type: TrustCenter
+  url: security/activtrak-trust-center.yml
+- type: Compliance
+  url: security/activtrak-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/activtrak-vulnerability-disclosure.yml
+- type: Security
+  url: security/activtrak-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/activtrak-domain-security.yml
+- type: Deprecation
+  url: lifecycle/activtrak-lifecycle.yml
+- type: StatusPage
+  url: https://status.activtrak.com/
+- type: ChangeLog
+  url: https://developers.activtrak.com/changelog/activtrak/activtrak-public-apis
+- type: DeveloperPortal
+  url: https://www.activtrak.com/developer/
+- type: Documentation
+  url: https://developers.activtrak.com/
+- type: APIReference
+  url: https://developers.activtrak.com/
+- type: Support
+  url: https://support.activtrak.com/hc/en-us
+- type: Blog
+  url: https://www.activtrak.com/blog/
+- type: Pricing
+  url: https://www.activtrak.com/pricing/
+- type: PrivacyPolicy
+  url: https://www.activtrak.com/privacy-policy/
+- type: Login
+  url: https://app.activtrak.com/
 - type: Website
   url: https://www.activtrak.com/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: ActivTrak Public APIs Administration Bulk Import API
+  version: v2
+  description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
+  contact:
+    name: ActivTrak Support
+    email: support@activtrak.com
+    url: https://developers.activtrak.com/
+  termsOfService: https://www.activtrak.com/terms-of-use/
+servers:
+- url: https://api.activtrak.com
+  description: United States (default)
+- url: https://api-eu.activtrak.com
+  description: European Union
+- url: https://api-uk.activtrak.com
+  description: United Kingdom
+- url: https://api-ca.activtrak.com
+  description: Canada
+- url: https://api-au.activtrak.com
+  description: Australia
+security:
+- ApiKeyAuth: []
+tags:
+- name: Bulk Import
+  description: HR Data Connector - submit CSV bulk user data.
+paths:
+  /hrdc/v2/bulk:
+    post:
+      operationId: importUserData
+      summary: This API call will allow the import of user data for automating user management. This endpoint accepts files in CSV form
+      tags:
+      - Bulk Import
+      description: This API call will allow the import of user data for automating user management. This endpoint accepts files in CSV format.
+      requestBody:
+        content:
+          application/multipart/form-data:
+            schema:
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+                  description: The filename for the CSV that contains user data
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: 'Public API key sent in the x-api-key header. Some endpoints also accept `Authorization: Bearer {apiKey}`. Keys are created in the ActivTrak app under API & Integrations > API Keys.'

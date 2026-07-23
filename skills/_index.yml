@@ -1,0 +1,26 @@
+generated: '2026-07-17'
+method: generated
+source: >-
+  Packaged Agent Skills generated from the ActivTrak Public APIs OpenAPI
+  (../openapi/activtrak-openapi-original.yaml). Every step is grounded in an
+  operationId verified verbatim in that spec; cross-cutting rules cite
+  ../conventions/activtrak-conventions.yml, ../errors/activtrak-problem-types.yml
+  and ../authentication/activtrak-authentication.yml. No provider-published
+  Agent Skills / AGENTS.md were found during search.
+skills:
+- file: activtrak-provision-scim-users-groups.md
+  name: Provision users and groups via SCIM
+  api: openapi/activtrak-openapi-original.yaml
+  operations: [getUsers, createUser, updateUser, deleteUser, getGroups, createGroup, updateGroup, deleteGroup]
+- file: activtrak-pull-activity-reports.md
+  name: Pull activity and working-hours reports
+  api: openapi/activtrak-openapi-original.yaml
+  operations: [getActivityLog, getWorkingHoursForUsers, getWorkingHoursForComputers]
+- file: activtrak-manage-app-access-consumers.md
+  name: Manage app access (consumers)
+  api: openapi/activtrak-openapi-original.yaml
+  operations: [getAllConsumers, getConsumer, createConsumers, patchConsumers, deleteConsumers]
+- file: activtrak-bulk-import-hr-data.md
+  name: Bulk-import HR user data
+  api: openapi/activtrak-openapi-original.yaml
+  operations: [importUserData]

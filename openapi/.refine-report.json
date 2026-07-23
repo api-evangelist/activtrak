@@ -1,0 +1,20 @@
+{
+  "provider": "activtrak",
+  "sources": [
+    "activtrak-administration-api-openapi.yml",
+    "activtrak-administration-scim-api-openapi.yml",
+    "activtrak-bulk-import-api-openapi.yml",
+    "activtrak-reports-api-openapi.yml"
+  ],
+  "outputs": [
+    "activtrak-administration-api-openapi.yml",
+    "activtrak-administration-scim-api-openapi.yml",
+    "activtrak-bulk-import-api-openapi.yml",
+    "activtrak-reports-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

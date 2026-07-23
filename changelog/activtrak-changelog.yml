@@ -1,0 +1,9 @@
+generated: '2026-07-17'
+method: searched
+source: https://developers.activtrak.com/changelog/activtrak/activtrak-public-apis
+scheme: path-versioned (reports/v2, admin/v1, scim/v1, hrdc/v2)
+changelog_url: https://developers.activtrak.com/changelog/activtrak/activtrak-public-apis
+notes: ActivTrak publishes a dated developer changelog on its docs portal; the page is client-rendered
+  so entries were not captured verbatim during this pass. The Administration (Consumers/SCIM) and Bulk
+  Import surfaces are actively evolving (Beta / Early Access).
+entries: []

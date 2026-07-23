@@ -1,0 +1,122 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/activtrak-openapi-original.yaml
+notes: No official ActivTrak-hosted/remote MCP server was found. This is a candidate tool list derived
+  1:1 from documented REST operations; not an endorsement of a running server.
+server:
+  name: activtrak
+  transport: candidate
+  base_urls:
+  - https://api.activtrak.com
+auth:
+  type: api_key
+  header: x-api-key
+tools:
+- name: getAllClients
+  method: GET
+  path: /admin/v1/clients
+  description: This API call returns a paged list of `Clients`. It returns the first page with up to 50
+    clients.
+- name: createConsumers
+  method: POST
+  path: /admin/v1/consumers
+  description: Create `Consumers` from the list provided. Response shall contain a list of success, falures
+    and warning/error messages.
+- name: deleteConsumers
+  method: DELETE
+  path: /admin/v1/consumers
+  description: Delete `Consumers` from the list provided. Response shall contain a list of success, falures
+    and warning/error messages.
+- name: getAllConsumers
+  method: GET
+  path: /admin/v1/consumers
+  description: This returns a list of all `Consumers`. The optional paramater `includeViewableGroups`
+    will return the list of Groups th
+- name: patchConsumers
+  method: PATCH
+  path: /admin/v1/consumers
+  description: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures
+    and warning/error messages.
+
+
+    '
+- name: getConsumer
+  method: GET
+  path: /admin/v1/consumers/{id}
+  description: Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse
+    object is returned indicating the
+- name: createGroup
+  method: POST
+  path: /scim/v1/groups
+  description: Creates a new ActivTrak Group.
+- name: getGroups
+  method: GET
+  path: /scim/v1/groups
+  description: Returns a list of ActivTrak Groups.
+- name: deleteGroup
+  method: DELETE
+  path: /scim/v1/groups/{groupId}
+  description: Deletes an ActivTrak Group.
+- name: getGroup
+  method: GET
+  path: /scim/v1/groups/{groupId}
+  description: Returns a single ActivTrak Group by ID.
+- name: updateGroup
+  method: PUT
+  path: /scim/v1/groups/{groupId}
+  description: Updates an existing ActivTrak Group by replacing it with the provided entity.
+- name: ping
+  method: GET
+  path: /scim/v1/ping
+  description: Returns the API's uptime status.
+- name: getSchema
+  method: GET
+  path: /scim/v1/schemas/{schemaUri}
+  description: Returns a specified SCIM schema by URI.
+- name: getSchemas
+  method: GET
+  path: /scim/v1/schemas
+  description: Returns a list of supported SCIM schemas.
+- name: createUser
+  method: POST
+  path: /scim/v1/users
+  description: 'Creates a new ActivTrak User.
+
+
+    If the User already exists in ActivTrak, the new information associated with the User is '
+- name: getUsers
+  method: GET
+  path: /scim/v1/users
+  description: Returns a list of ActivTrak Users.
+- name: deleteUser
+  method: DELETE
+  path: /scim/v1/users/{userId}
+  description: Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.
+- name: getUser
+  method: GET
+  path: /scim/v1/users/{userId}
+  description: Returns a single ActivTrak User by ID.
+- name: updateUser
+  method: PUT
+  path: /scim/v1/users/{userId}
+  description: Updates an existing ActivTrak User by replacing it with the provided entity.
+- name: importUserData
+  method: POST
+  path: /hrdc/v2/bulk
+  description: This API call will allow the import of user data for automating user management. This endpoint
+    accepts files in CSV form
+- name: getActivityLog
+  method: GET
+  path: /reports/v2/activitylog
+  description: This API call returns a list of Activity Log objects
+- name: getWorkingHoursForComputers
+  method: GET
+  path: /reports/v2/workinghours/computers
+  description: This API call returns a list of Working Hour Activity objects along with a total (used
+    for pagination). This data will b
+- name: getWorkingHoursForUsers
+  method: GET
+  path: /reports/v2/workinghours/users
+  description: This API call returns a list of Working Hour Activity objects along with a total (used
+    for pagination). This data is fro

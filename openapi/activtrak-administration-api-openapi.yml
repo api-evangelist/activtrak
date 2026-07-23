@@ -1,0 +1,707 @@
+openapi: 3.1.0
+info:
+  title: ActivTrak Public APIs Administration API
+  version: v2
+  description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
+  contact:
+    name: ActivTrak Support
+    email: support@activtrak.com
+    url: https://developers.activtrak.com/
+  termsOfService: https://www.activtrak.com/terms-of-use/
+servers:
+- url: https://api.activtrak.com
+  description: United States (default)
+- url: https://api-eu.activtrak.com
+  description: European Union
+- url: https://api-uk.activtrak.com
+  description: United Kingdom
+- url: https://api-ca.activtrak.com
+  description: Canada
+- url: https://api-au.activtrak.com
+  description: Australia
+security:
+- ApiKeyAuth: []
+tags:
+- name: Administration
+  description: Administer the ActivTrak account (clients, consumers). Beta.
+paths:
+  /admin/v1/clients:
+    get:
+      operationId: getAllClients
+      summary: This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.
+      tags:
+      - Administration
+      description: This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.
+      responses:
+        '200':
+          description: Returns a paged list of clients for the account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                    description: The ActivTrak ID number of a user agent. The first user agent in an organization starts at 1 and then increases sequentially.
+                  domain:
+                    type: string
+                    nullable: true
+                    description: The logon domain on which the user agent’s unique activity was identified.
+                  name:
+                    type: string
+                    nullable: true
+                    description: The name of a user that is derived from a computer’s user profile (user ID).
+                  alias:
+                    type: string
+                    nullable: true
+                    description: The alias that was previously provided for the user.
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /admin/v1/consumers:
+    post:
+      operationId: createConsumers
+      summary: Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+      tags:
+      - Administration
+      description: 'Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+
+
+        When specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.
+
+
+        Consumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1` and `groupname` `All Users and Groups (current and future)` so they can view all current and future groups.
+
+
+        Consumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid` or `groupname` or to all current and future groups by providing `-1` in the `groupid`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          firstName:
+                            type: string
+                          lastName:
+                            type: string
+                          email:
+                            type: string
+                          roles:
+                            type: array
+                            description: 'Only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`'
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    name:
+                                      type: string
+                                    displayname:
+                                      type: string
+                                  description: Only one of the following is required `id` or `name`.
+                          ssoEnabled:
+                            type: boolean
+                          viewableGroups:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    groupid:
+                                      type: integer
+                                    groupname:
+                                      type: string
+                                    goalsetter:
+                                      type: boolean
+                                  description: Only one of the following is required `groupid` or `groupname`.
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    delete:
+      operationId: deleteConsumers
+      summary: Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+      tags:
+      - Administration
+      description: 'Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+
+
+        The following list can have one or both, but must have one or the other: `consumerIds`, `usernames`'
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getAllConsumers
+      summary: This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups th
+      tags:
+      - Administration
+      description: 'This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups that the corresponding `consumer` has access to. If `includeViewableGroups` is not included in the URL query parameters, the default value will be `false`.
+
+
+        When `includeViewableGroups` is set to `true`, consumers with the roles of `PowerUser` and `Viewer` will have all their groups listed in `viewableGroups` . Consumers with `groupid` `-1` `groupname` `All Users and Groups (current and future)` indicates that they have access to all current and future Users and Groups.
+
+
+        Lastly, consumers with the roles of `Admin` and `Configurator` will have `groupid` `-1` `groupname` `All Users and Groups (current and future)`'
+      parameters:
+      - name: includeViewableGroups
+        in: query
+        required: false
+        description: Set to true to display Viewable Groups in the Response
+        schema:
+          type: boolean
+          format: int32
+      responses:
+        '200':
+          description: A list of all consumers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consumers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            firstName:
+                              type: string
+                            lastName:
+                              type: string
+                            username:
+                              type: string
+                            email:
+                              type: string
+                            roles:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                      name:
+                                        type: string
+                                      displayname:
+                                        type: string
+                            ssoEnabled:
+                              type: boolean
+                            viewableGroups:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      groupid:
+                                        type: integer
+                                      groupname:
+                                        type: string
+                                      goalsetter:
+                                        type: boolean
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+    patch:
+      operationId: patchConsumers
+      summary: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+
+
+        '
+      tags:
+      - Administration
+      description: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+
+
+        Either `id` or `username` may be used to identify a consumer to patch.
+
+
+        Patching can be used for any combination of the following fields: `viewableGroups`, `roles`, `ssoEnabled`
+
+
+        When specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.
+
+
+        Consumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1` and `groupname` `All Users and Groups (current and future)` so they can view all current and future groups.
+
+
+        Consumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid` or `groupname` or to all current and future groups by providing `-1` in the `groupid`.
+
+
+        If the `groupid` has the value of `-1`, the consumer''s `viewableGroups` shall be `All Users and Groups (current and future)`'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumers:
+                  type: array
+                  description: Only one of the following is required `id` or `username`.
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          username:
+                            type: string
+                          roles:
+                            type: array
+                            description: 'Only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`'
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    name:
+                                      type: string
+                                    displayname:
+                                      type: string
+                                  description: Only one of the following is required `id` or `name`.
+                          ssoEnabled:
+                            type: boolean
+                          viewableGroups:
+                            type: array
+                            description: Only one of the following is required `groupid` or `groupname`.
+                            items:
+                              type: object
+                              properties:
+                                '0':
+                                  type: object
+                                  properties:
+                                    groupid:
+                                      type: integer
+                                    groupname:
+                                      type: string
+                                    goalsetter:
+                                      type: boolean
+      responses:
+        '200':
+          description: A list of success and/or failures of consumers identifier with warning/error messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succeded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+  /admin/v1/consumers/{id}:
+    get:
+      operationId: getConsumer
+      summary: Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the
+      tags:
+      - Administration
+      description: 'Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the error.
+
+
+        If the consumer has a role of `PowerUser` or `Viewer` , they will have all their groups listed in `viewableGroups` . If their `groupid` is `-1` and `groupname` `All Users and Groups (current and future)` it indicates that they have access to all current and future Users and Groups.
+
+
+        Lastly, if the consumer has a role of `Admin` and `Configurator` they will will have `groupid` `-1` `groupname` `All Users and Groups (current and future)`'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of an existing consumer whose information will be returned.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The consumer's data object that matches the identifier.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consumer:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      firstName:
+                        type: string
+                      lastName:
+                        type: string
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      roles:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            '0':
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                name:
+                                  type: string
+                                displayname:
+                                  type: string
+                      ssoEnabled:
+                        type: boolean
+                      viewableGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            '0':
+                              type: object
+                              properties:
+                                groupid:
+                                  type: integer
+                                groupname:
+                                  type: string
+                                goalsetter:
+                                  type: boolean
+        '400':
+          description: Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+        '404':
+          description: Failed StatusResponse with an error message indicating that the consumer couldn't be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    nullable: true
+                    items:
+                      type: array
+                      nullable: true
+                      items: {}
+                  success:
+                    type: boolean
+      security:
+      - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: 'Public API key sent in the x-api-key header. Some endpoints also accept `Authorization: Bearer {apiKey}`. Keys are created in the ActivTrak app under API & Integrations > API Keys.'

@@ -1,0 +1,54 @@
+generated: '2026-07-17'
+method: searched
+source: https://developers.activtrak.com/ + openapi/activtrak-openapi-original.yaml
+auth:
+  style: api_key
+  header: x-api-key
+  alt: 'Authorization: Bearer {apiKey}'
+  issuance: Admin creates keys in the ActivTrak app under API & Integrations > API Keys; accessible APIs
+    depend on subscription plan and ActivConnect add-on.
+  ref: authentication/activtrak-authentication.yml
+pagination:
+  styles:
+  - page
+  - cursor
+  page:
+    params:
+    - page
+    - pageSize
+    default_page_size: 150
+    max_page_size: 1000
+    used_by:
+    - Working Hours
+  cursor:
+    used_by:
+    - Activity Log
+    notes: Provide the returned cursor to page forward; startDate/endDate bound the range.
+  response_fields:
+  - total (page-based)
+  - cursor (cursor-based)
+versioning:
+  style: path-embedded
+  ref: lifecycle/activtrak-lifecycle.yml
+error_envelope:
+  format: application/json error message
+  rfc9457: false
+  ref: errors/activtrak-problem-types.yml
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header; PUT/PATCH mutations are keyed on resource id.
+rate_limiting:
+  documented: false
+  notes: Feature access is gated by subscription plan/add-on rather than documented request-rate limits.
+data_scoping:
+  notes: clientId, groupId, or deviceId scope report queries; only one may be supplied per request. Auth
+    maps to a specific customer account and web user, and available data follows that user’s permissions.
+standards:
+  scim: SCIM 2.0 for user/group provisioning
+  ref: conformance/activtrak-conformance.yml
+regions:
+- api.activtrak.com (US)
+- api-eu.activtrak.com (EU)
+- api-uk.activtrak.com (UK)
+- api-ca.activtrak.com (CA)
+- api-au.activtrak.com (AU)

@@ -1,0 +1,1255 @@
+openapi: 3.1.0
+info:
+  title: ActivTrak Public APIs Administration Administration - SCIM API
+  version: v2
+  description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
+  contact:
+    name: ActivTrak Support
+    email: support@activtrak.com
+    url: https://developers.activtrak.com/
+  termsOfService: https://www.activtrak.com/terms-of-use/
+servers:
+- url: https://api.activtrak.com
+  description: United States (default)
+- url: https://api-eu.activtrak.com
+  description: European Union
+- url: https://api-uk.activtrak.com
+  description: United Kingdom
+- url: https://api-ca.activtrak.com
+  description: Canada
+- url: https://api-au.activtrak.com
+  description: Australia
+security:
+- ApiKeyAuth: []
+tags:
+- name: Administration - SCIM
+  description: SCIM 2.0 user and group management. Beta.
+paths:
+  /scim/v1/groups:
+    post:
+      operationId: createGroup
+      summary: Creates a new ActivTrak Group.
+      tags:
+      - Administration - SCIM
+      description: Creates a new ActivTrak Group.
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                displayName:
+                  type: string
+                  nullable: true
+      responses:
+        '201':
+          description: Returns the newly created Group.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '409':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getGroups
+      summary: Returns a list of ActivTrak Groups.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of ActivTrak Groups.
+      parameters:
+      - name: count
+        in: query
+        required: false
+        description: The amount of groups to return per page
+        schema:
+          type: string
+      - name: startIndex
+        in: query
+        required: false
+        description: The page number of results to return
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of ActivTrak Groups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  itemsPerPage:
+                    type: integer
+                  startIndex:
+                    type: integer
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            schemas:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: string
+                                    nullable: true
+                            id:
+                              type: string
+                              nullable: true
+                            displayName:
+                              type: string
+                              nullable: true
+                            members:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      value:
+                                        type: string
+                                        nullable: true
+                                      display:
+                                        type: string
+                                        nullable: true
+                                      $ref:
+                                        type: string
+                                        nullable: true
+                                      type:
+                                        type: string
+                                        nullable: true
+                            meta:
+                              type: object
+                              properties:
+                                resourceType:
+                                  type: string
+                                created:
+                                  type: string
+                                lastModified:
+                                  type: string
+                                location:
+                                  type: string
+                                version:
+                                  type: string
+                            urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                              type: object
+                              properties:
+                                sourceType:
+                                  type: number
+                                instanceId:
+                                  type: string
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/groups/{groupId}:
+    delete:
+      operationId: deleteGroup
+      summary: Deletes an ActivTrak Group.
+      tags:
+      - Administration - SCIM
+      description: Deletes an ActivTrak Group.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Returns the HTTP status code result.
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getGroup
+      summary: Returns a single ActivTrak Group by ID.
+      tags:
+      - Administration - SCIM
+      description: Returns a single ActivTrak Group by ID.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a single ActivTrak Group by ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                        nullable: true
+                      created:
+                        type: string
+                        format: date-time
+                      lastModified:
+                        type: string
+                        format: date-time
+                      location:
+                        type: string
+                        nullable: true
+                      version:
+                        type: string
+                        nullable: true
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: updateGroup
+      summary: Updates an existing ActivTrak Group by replacing it with the provided entity.
+      tags:
+      - Administration - SCIM
+      description: Updates an existing ActivTrak Group by replacing it with the provided entity.
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                displayName:
+                  type: string
+                  nullable: true
+                members:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            nullable: true
+      responses:
+        '200':
+          description: Returns the updated ActivTrak Group.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  members:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group:
+                    type: object
+                    properties:
+                      sourceType:
+                        type: number
+                      instanceId:
+                        type: string
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/ping:
+    get:
+      operationId: ping
+      summary: Returns the API's uptime status.
+      tags:
+      - Administration - SCIM
+      description: Returns the API's uptime status.
+      responses:
+        '200':
+          description: Returns the message "Pong" indicating successful API ping.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/schemas/{schemaUri}:
+    get:
+      operationId: getSchema
+      summary: Returns a specified SCIM schema by URI.
+      tags:
+      - Administration - SCIM
+      description: Returns a specified SCIM schema by URI.
+      parameters:
+      - name: schemaUri
+        in: path
+        required: true
+        schema:
+          type: string
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a specified SCIM schema by URI.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: true
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  attributes:
+                    type: array
+                    items: {}
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/schemas:
+    get:
+      operationId: getSchemas
+      summary: Returns a list of supported SCIM schemas.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of supported SCIM schemas.
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of supported SCIM schemas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              nullable: true
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            attributes:
+                              type: array
+                              items: {}
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/users:
+    post:
+      operationId: createUser
+      summary: 'Creates a new ActivTrak User.
+
+
+        If the User already exists in ActivTrak, the new information associated with the User is '
+      tags:
+      - Administration - SCIM
+      description: 'Creates a new ActivTrak User.
+
+
+        If the User already exists in ActivTrak, the new information associated with the User is updated.'
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                      '1':
+                        type: string
+                      '2':
+                        type: string
+                name:
+                  type: object
+                  properties:
+                    familyName:
+                      type: string
+                    givenName:
+                      type: string
+                    middleName:
+                      type: string
+                displayName:
+                  type: string
+                  nullable: true
+                emails:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          primary:
+                            type: boolean
+                          value:
+                            type: string
+                urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                  type: object
+                  properties:
+                    employeeNumber:
+                      type: string
+                urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                  type: object
+                  properties:
+                    userPrincipalNames:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          '0':
+                            type: string
+      responses:
+        '201':
+          description: Returns the newly created User.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                      givenName:
+                        type: string
+                      middleName:
+                        type: string
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                            display:
+                              type: string
+                            $ref:
+                              type: string
+                            type:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '409':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getUsers
+      summary: Returns a list of ActivTrak Users.
+      tags:
+      - Administration - SCIM
+      description: Returns a list of ActivTrak Users.
+      parameters:
+      - name: count
+        in: query
+        required: false
+        description: The amount of users to return per page
+        schema:
+          type: string
+      - name: startIndex
+        in: query
+        required: false
+        description: The page number of results to return
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of ActivTrak Users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  totalResults:
+                    type: integer
+                    format: int32
+                  itemsPerPage:
+                    type: integer
+                  startIndex:
+                    type: integer
+                  resources:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            schemas:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: string
+                                    nullable: true
+                            id:
+                              type: string
+                              nullable: true
+                            userName:
+                              type: string
+                              nullable: true
+                            name:
+                              type: object
+                              properties:
+                                familyName:
+                                  type: string
+                                  nullable: true
+                                givenName:
+                                  type: string
+                                  nullable: true
+                                middleName:
+                                  type: string
+                                  nullable: true
+                            displayName:
+                              type: string
+                              nullable: true
+                            emails:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      primary:
+                                        type: boolean
+                                      value:
+                                        type: string
+                                        nullable: true
+                            active:
+                              type: boolean
+                            groups:
+                              type: array
+                              nullable: true
+                              items:
+                                type: object
+                                properties:
+                                  '0':
+                                    type: object
+                                    properties:
+                                      value:
+                                        type: string
+                                        nullable: true
+                                      display:
+                                        type: string
+                                        nullable: true
+                                      $ref:
+                                        type: string
+                                        nullable: true
+                                      type:
+                                        type: string
+                                        nullable: true
+                            meta:
+                              type: object
+                              properties:
+                                resourceType:
+                                  type: string
+                                  nullable: true
+                                created:
+                                  type: string
+                                  format: date-time
+                                lastModified:
+                                  type: string
+                                  format: date-time
+                                location:
+                                  type: string
+                                  nullable: true
+                                version:
+                                  type: string
+                                  nullable: true
+                            urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                              type: object
+                              properties:
+                                employeeNumber:
+                                  type: string
+                            urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                              type: object
+                              properties:
+                                tracking:
+                                  type: boolean
+                                userPrincipalNames:
+                                  type: array
+                                  items: {}
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+  /scim/v1/users/{userId}:
+    delete:
+      operationId: deleteUser
+      summary: Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.
+      tags:
+      - Administration - SCIM
+      description: Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Returns the HTTP status code result.
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    get:
+      operationId: getUser
+      summary: Returns a single ActivTrak User by ID.
+      tags:
+      - Administration - SCIM
+      description: Returns a single ActivTrak User by ID.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a single ActivTrak User by ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                    nullable: true
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                        nullable: true
+                      givenName:
+                        type: string
+                        nullable: true
+                      middleName:
+                        type: string
+                        nullable: true
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                              nullable: true
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              nullable: true
+                            display:
+                              type: string
+                              nullable: true
+                            $ref:
+                              type: string
+                              nullable: true
+                            type:
+                              type: string
+                              nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                        nullable: true
+                      created:
+                        type: string
+                        format: date-time
+                      lastModified:
+                        type: string
+                        format: date-time
+                      location:
+                        type: string
+                        nullable: true
+                      version:
+                        type: string
+                        nullable: true
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '404':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: updateUser
+      summary: Updates an existing ActivTrak User by replacing it with the provided entity.
+      tags:
+      - Administration - SCIM
+      description: Updates an existing ActivTrak User by replacing it with the provided entity.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: string
+                        nullable: true
+                      '1':
+                        type: string
+                      '2':
+                        type: string
+                name:
+                  type: object
+                  properties:
+                    familyName:
+                      type: string
+                    givenName:
+                      type: string
+                    middleName:
+                      type: string
+                displayName:
+                  type: string
+                  nullable: true
+                emails:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '0':
+                        type: object
+                        properties:
+                          primary:
+                            type: boolean
+                          value:
+                            type: string
+                urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                  type: object
+                  properties:
+                    employeeNumber:
+                      type: string
+                urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                  type: object
+                  properties:
+                    userPrincipalNames:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          '0':
+                            type: string
+      responses:
+        '200':
+          description: Returns the updated ActivTrak User.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: string
+                          nullable: true
+                  id:
+                    type: string
+                    nullable: true
+                  userName:
+                    type: string
+                  name:
+                    type: object
+                    properties:
+                      familyName:
+                        type: string
+                      givenName:
+                        type: string
+                      middleName:
+                        type: string
+                  displayName:
+                    type: string
+                    nullable: true
+                  emails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            primary:
+                              type: boolean
+                            value:
+                              type: string
+                  active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                            display:
+                              type: string
+                            $ref:
+                              type: string
+                            type:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                      created:
+                        type: string
+                      lastModified:
+                        type: string
+                      location:
+                        type: string
+                      version:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:
+                    type: object
+                    properties:
+                      employeeNumber:
+                        type: string
+                  urn:ietf:params:scim:schemas:extension:activtrak:2.0:User:
+                    type: object
+                    properties:
+                      tracking:
+                        type: boolean
+                      userPrincipalNames:
+                        type: array
+                        items: {}
+        '400':
+          description: Error status with failure reason.
+        '500':
+          description: Error status with failure reason.
+      security:
+      - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: 'Public API key sent in the x-api-key header. Some endpoints also accept `Authorization: Bearer {apiKey}`. Keys are created in the ActivTrak app under API & Integrations > API Keys.'

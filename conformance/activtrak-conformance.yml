@@ -1,0 +1,38 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/activtrak-openapi-original.yaml + https://developers.activtrak.com/ + https://www.activtrak.com/security/
+standards:
+- id: scim2
+  name: SCIM 2.0 (RFC 7643/7644)
+  conforms: true
+  evidence: 'Administration API exposes a full SCIM 2.0 surface: /scim/v1 Users, Groups, Schemas, ServiceProviderConfig-style
+    Ping, with SCIM core+enterprise+custom schemas (urn:ietf:params:scim:schemas:core:2.0:User/Group).
+    Docs: https://developers.activtrak.com/administration/scim'
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: Authentication is via a static API key (x-api-key header / Bearer {apiKey}); no OAuth 2.0
+    authorization flows are documented.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: No OIDC discovery or flows documented.
+- id: rfc9457
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: Error responses (400/500) return application/json with an error message, not application/problem+json.
+- id: pagination
+  name: Pagination
+  conforms: true
+  evidence: 'Reports APIs support both page-based (Working Hours: page/pageSize) and cursor-based (Activity
+    Log) pagination; stated plan to converge on cursor-based.'
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence: No Idempotency-Key header documented; mutating SCIM operations rely on resource identity (PUT/PATCH
+    by id).
+- id: compliance
+  name: Compliance program (SOC 2 / HIPAA / GDPR)
+  conforms: true
+  evidence: Trust Center (https://trust.activtrak.com, Vanta-backed) and security page publish SOC 2,
+    HIPAA, and GDPR posture. See https://www.activtrak.com/security/

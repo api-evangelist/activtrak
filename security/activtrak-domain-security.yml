@@ -1,0 +1,29 @@
+generated: '2026-07-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.activtrak.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 27 16:04:46 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: api.activtrak.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 22:00:07 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: api-eu.activtrak.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 08:20:49 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: activtrak.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

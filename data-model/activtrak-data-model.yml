@@ -1,0 +1,36 @@
+generated: '2026-07-17'
+method: derived
+source: >-
+  Derived from the ActivTrak Public APIs OpenAPI
+  (openapi/activtrak-openapi-original.yaml) and the documented object reference
+  at https://developers.activtrak.com/. The spec inlines all schemas (no
+  #/components/schemas $ref graph), so entities and relationships are derived
+  from the resource paths and the documented id-reference fields (clientId /
+  groupId / deviceId scoping, Consumer.viewableGroups, Group.members).
+docs: https://developers.activtrak.com/
+notation: >-
+  relationships use has_one / has_many / belongs_to with the reference field
+  name; direction is from the entity that owns the reference. ActivTrak ids are
+  integers (Clients/Consumers) or SCIM string ids (Users/Groups) with no vendor
+  id-prefix.
+entities:
+- {name: Client, id_type: integer, domain: administration, description: A tracked user agent (device/user whose activity is logged). Retrieved via the Clients API.}
+- {name: Consumer, id_type: integer, domain: administration, description: An ActivTrak app user who views reports or administers the account (roles Admin/Configurator/PowerUser/Viewer).}
+- {name: Group, id_type: string, domain: scim, description: A SCIM 2.0 user group (displayName, members).}
+- {name: User, id_type: string, domain: scim, description: A SCIM 2.0 user (userName, emails, UPNs, employeeNumber, active/tracking state).}
+- {name: Schema, id_type: uri, domain: scim, description: A supported SCIM schema definition (core/enterprise/custom activtrak extensions).}
+- {name: WorkingHourActivity, id_type: none, domain: reports, description: A per-user or per-computer working-hours record from the Live Data API.}
+- {name: ActivityLogEntry, id_type: none, domain: reports, description: A master digital-activity record from the Activity Log report.}
+relationships:
+- {from: Group, to: User, kind: has_many, via: members}
+- {from: Consumer, to: Group, kind: has_many, via: viewableGroups}
+- {from: WorkingHourActivity, to: Client, kind: belongs_to, via: clientId}
+- {from: WorkingHourActivity, to: Group, kind: belongs_to, via: groupId}
+- {from: ActivityLogEntry, to: Client, kind: belongs_to, via: clientId}
+- {from: ActivityLogEntry, to: Group, kind: belongs_to, via: groupId}
+scoping:
+  notes: >-
+    Report queries (Working Hours, Activity Log) are scoped by exactly one of
+    clientId, groupId, or deviceId per request. Auth (the API key) maps to a
+    specific customer account and web user; visible data follows that user's
+    permissions.

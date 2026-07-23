@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/activtrak-openapi-original.yaml
+format: json
+envelope: application/json body with an error message (not RFC 9457 problem+json)
+problem_types:
+- status: 400
+  title: Bad Request
+  detail: Request failed with an error message indicating the reason of the failure (e.g. invalid date
+    range, more than one of clientId/groupId/deviceId supplied, or invalid parameters).
+  remediation: Validate query parameters; supply only one of clientId, groupId, or deviceId; use YYYY-MM-DD
+    dates.
+- status: 401
+  title: Unauthorized
+  detail: Missing or invalid API key in the x-api-key / Authorization header.
+  remediation: Provide a valid API key created under API & Integrations > API Keys, appropriate to the
+    subscription plan and the API being called.
+- status: 404
+  title: Not Found
+  detail: Referenced resource (e.g. consumer, SCIM user or group) does not exist.
+  remediation: Confirm the resource id exists in the account.
+- status: 500
+  title: Internal Server Error
+  detail: An unexpected error occurred on the ActivTrak side.
+  remediation: Retry with backoff; contact support@activtrak.com if it persists.
+notes: 401/404 are inferred conventional statuses for an API-key REST API; 400 and 500 are documented
+  explicitly in the endpoint reference. No RFC 9457 problem+json envelope is used.

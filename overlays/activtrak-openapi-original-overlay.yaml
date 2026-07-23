@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay for ActivTrak Public APIs
+  version: 1.0.0
+x-provenance:
+  generated: '2026-07-17'
+  method: generated
+  source: openapi/activtrak-openapi-original.yaml
+extends: ../openapi/activtrak-openapi-original.yaml
+actions:
+- target: $.info
+  description: Annotate docs, auth, and regional server context captured during enrichment.
+  update:
+    x-api-evangelist:
+      docs: https://developers.activtrak.com/
+      llms_txt: https://developers.activtrak.com/llms.txt
+      auth: API key sent via the x-api-key header (Bearer form also accepted on some endpoints).
+      regions:
+      - United States (api.activtrak.com)
+      - European Union (api-eu.activtrak.com)
+      - United Kingdom (api-uk.activtrak.com)
+      - Canada (api-ca.activtrak.com)
+      - Australia (api-au.activtrak.com)
+- target: $.tags[?(@.name=='Administration - SCIM')]
+  description: Flag the SCIM surface as a recognized cross-cutting standard (SCIM 2.0).
+  update:
+    x-standard: SCIM 2.0 (RFC 7643 / RFC 7644)
+    x-lifecycle: beta
+- target: $.paths['/reports/v2/activitylog'].get
+  description: Note cursor-based pagination on the Activity Log endpoint.
+  update:
+    x-pagination: cursor
+- target: $.paths['/reports/v2/workinghours/users'].get
+  description: Note page-based pagination on Working Hours (planned migration to cursor).
+  update:
+    x-pagination: page
+    x-deprecation-note: Page-based pagination is planned for deprecation in favor of cursor-based pagination.
