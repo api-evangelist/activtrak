@@ -153,6 +153,12 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/activtrak-bulk-import-hr-data.md
+- type: MCPServer
+  url: mcp/activtrak-mcp.yml
+- type: Overlay
+  url: overlays/activtrak-openapi-original-overlay.yaml
 - type: Authentication
   url: authentication/activtrak-authentication.yml
 - type: TrustCenter
