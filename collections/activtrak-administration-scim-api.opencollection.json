@@ -1,0 +1,400 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActivTrak Public APIs Administration Administration - SCIM API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Administration - SCIM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of ActivTrak Groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/groups",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The amount of groups to return per page"
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "The page number of results to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of ActivTrak Groups."
+        },
+        {
+          "info": {
+            "name": "Creates a new ActivTrak Group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.activtrak.com/scim/v1/groups",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new ActivTrak Group."
+        },
+        {
+          "info": {
+            "name": "Returns a single ActivTrak Group by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/groups/:groupId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single ActivTrak Group by ID."
+        },
+        {
+          "info": {
+            "name": "Updates an existing ActivTrak Group by replacing it with the provided entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.activtrak.com/scim/v1/groups/:groupId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing ActivTrak Group by replacing it with the provided entity."
+        },
+        {
+          "info": {
+            "name": "Deletes an ActivTrak Group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.activtrak.com/scim/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an ActivTrak Group."
+        },
+        {
+          "info": {
+            "name": "Returns the API's uptime status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/ping",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the API's uptime status."
+        },
+        {
+          "info": {
+            "name": "Returns a specified SCIM schema by URI.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/schemas/:schemaUri",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "schemaUri",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a specified SCIM schema by URI."
+        },
+        {
+          "info": {
+            "name": "Returns a list of supported SCIM schemas.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/schemas",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of supported SCIM schemas."
+        },
+        {
+          "info": {
+            "name": "Returns a list of ActivTrak Users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/users",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The amount of users to return per page"
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "The page number of results to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of ActivTrak Users."
+        },
+        {
+          "info": {
+            "name": "Creates a new ActivTrak User.\n\nIf the User already exists in ActivTrak, the new information associated with the User is ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.activtrak.com/scim/v1/users",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new ActivTrak User.\n\nIf the User already exists in ActivTrak, the new information associated with the User is updated."
+        },
+        {
+          "info": {
+            "name": "Returns a single ActivTrak User by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/scim/v1/users/:userId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single ActivTrak User by ID."
+        },
+        {
+          "info": {
+            "name": "Updates an existing ActivTrak User by replacing it with the provided entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.activtrak.com/scim/v1/users/:userId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing ActivTrak User by replacing it with the provided entity."
+        },
+        {
+          "info": {
+            "name": "Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.activtrak.com/scim/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

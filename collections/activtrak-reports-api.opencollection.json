@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActivTrak Public APIs Administration Reports API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "This API call returns a list of Activity Log objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/reports/v2/activitylog",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The starting date. Format: YYYY-MM-DD. If a cursor is provided for pagination, this field does not affect your query results. The default value is {TODAY}"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The end date (inclusive). Format: YYYY-MM-DD. This field should only be used to bind your data to a specific date range. Otherwise, you only require the start date and you can paginate through to all available data from that point."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The specific client id to fetch data. The default value of -1 returns data \"all users\" Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The specific device id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "The specific group id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The page size for number of results to return per request. The maximum value is 1000. The default value is 150."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor for pagination. When a request is made without a cursor, the response returns results based on the date range. Each response returns a cursor. You should input the new cursor value for each subsequent request if you wish to paginate through additional data. If you do provide a cursor, the startDate no longer affects the result boundaries. This allows you to receive old records that have arrived late. If you receive no results with a valid/provided cursor, it means that no new records have been received yet. A cursor request which returns no results will return the same cursor back to the caller."
+              },
+              {
+                "name": "minDuration",
+                "value": "",
+                "type": "query",
+                "description": "The minimum duration in seconds (inclusive). Only activities that have a duration greater than or equal to this value will be returned."
+              },
+              {
+                "name": "maxDuration",
+                "value": "",
+                "type": "query",
+                "description": "The maximum duration in seconds (inclusive). Only activities that have a duration less than or equal to this value will be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call returns a list of Activity Log objects"
+        },
+        {
+          "info": {
+            "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will b",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/reports/v2/workinghours/computers",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The starting date. Format: YYYY-MM-DD."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end date (inclusive). Format: YYYY-MM-DD."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The specific device id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number used in pagination."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The page size for the number of results to return per request. The maximum value is 1000."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will be from the computer perspective."
+        },
+        {
+          "info": {
+            "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is fro",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/reports/v2/workinghours/users",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The starting date. Format: YYYY-MM-DD."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end date (inclusive). Format: YYYY-MM-DD."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The specific client Id to fetch data. The default value of -1 returns data \"all users\". Only one of the fields(clientId, groupId, deviceId) can be sent per request."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number used in pagination."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The page size for the number of results to return per request. The maximum value is 1000."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is from the user's perspective."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

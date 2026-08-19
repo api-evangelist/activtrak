@@ -1,0 +1,987 @@
+{
+  "item": [
+    {
+      "id": "57b2901d-2416-4d71-a22e-1586b26878f8",
+      "name": "Reports",
+      "description": {
+        "content": "Live Data API - query activity reports (Working Hours, Activity Log).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9902fd9-617c-47db-b22e-0fcc693381b3",
+          "name": "This API call returns a list of Activity Log objects",
+          "request": {
+            "name": "This API call returns a list of Activity Log objects",
+            "description": {
+              "content": "This API call returns a list of Activity Log objects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "v2",
+                "activitylog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "The current timestamp",
+                  "description": "The starting date. Format: YYYY-MM-DD. If a cursor is provided for pagination, this field does not affect your query results. The default value is {TODAY}"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "The end date (inclusive). Format: YYYY-MM-DD. This field should only be used to bind your data to a specific date range. Otherwise, you only require the start date and you can paginate through to all available data from that point."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "The specific client id to fetch data. The default value of -1 returns data \"all users\" Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The specific device id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "The specific group id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "150",
+                  "description": "The page size for number of results to return per request. The maximum value is 1000. The default value is 150."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor for pagination. When a request is made without a cursor, the response returns results based on the date range. Each response returns a cursor. You should input the new cursor value for each subsequent request if you wish to paginate through additional data. If you do provide a cursor, the startDate no longer affects the result boundaries. This allows you to receive old records that have arrived late. If you receive no results with a valid/provided cursor, it means that no new records have been received yet. A cursor request which returns no results will return the same cursor back to the caller."
+                },
+                {
+                  "disabled": false,
+                  "key": "minDuration",
+                  "value": "<string>",
+                  "description": "The minimum duration in seconds (inclusive). Only activities that have a duration greater than or equal to this value will be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxDuration",
+                  "value": "<string>",
+                  "description": "The maximum duration in seconds (inclusive). Only activities that have a duration less than or equal to this value will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90fac0fa-7f18-4d6c-b19f-fd1c605d6f6a",
+              "name": "A response with the Report for Users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "activitylog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "The current timestamp"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minDuration",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxDuration",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activity\": [\n    {\n      \"logId\": 2528,\n      \"productivity\": 885,\n      \"screenshotUrl\": \"string\",\n      \"popupAlarm\": false,\n      \"emailAlarm\": false,\n      \"externalNotificationAlarm\": true,\n      \"terminate\": true,\n      \"time\": \"2012-12-04T06:44:51.994Z\",\n      \"computerId\": 9397,\n      \"computer\": \"string\",\n      \"primaryDomain\": \"string\",\n      \"privateIp\": \"string\",\n      \"publicIp\": \"string\",\n      \"loginDomain\": \"string\",\n      \"user\": \"string\",\n      \"session\": 8958,\n      \"duration\": 9829,\n      \"applicationId\": 6725,\n      \"websiteId\": 8499,\n      \"titleBar\": \"string\",\n      \"executable\": \"string\",\n      \"description\": \"string\",\n      \"website\": \"string\",\n      \"subpage\": \"string\",\n      \"url\": \"string\",\n      \"location\": \"string\",\n      \"time_zone\": \"string\",\n      \"time_utc\": \"2020-05-31T15:46:30.327Z\"\n    },\n    {\n      \"logId\": 4051,\n      \"productivity\": 9284,\n      \"screenshotUrl\": \"string\",\n      \"popupAlarm\": true,\n      \"emailAlarm\": false,\n      \"externalNotificationAlarm\": false,\n      \"terminate\": false,\n      \"time\": \"1965-09-04T09:06:01.332Z\",\n      \"computerId\": 7431,\n      \"computer\": \"string\",\n      \"primaryDomain\": \"string\",\n      \"privateIp\": \"string\",\n      \"publicIp\": \"string\",\n      \"loginDomain\": \"string\",\n      \"user\": \"string\",\n      \"session\": 7468,\n      \"duration\": 8121,\n      \"applicationId\": 1320,\n      \"websiteId\": 7236,\n      \"titleBar\": \"string\",\n      \"executable\": \"string\",\n      \"description\": \"string\",\n      \"website\": \"string\",\n      \"subpage\": \"string\",\n      \"url\": \"string\",\n      \"location\": \"string\",\n      \"time_zone\": \"string\",\n      \"time_utc\": \"2012-04-30T15:58:40.275Z\"\n    }\n  ],\n  \"cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a19dcc1-d2cd-45be-b1b2-f1e775239bb1",
+              "name": "Bad request. Failed StatusResponse with an error message indicating the reason of the failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "activitylog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "The current timestamp"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minDuration",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxDuration",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba8b72bb-aa72-41e9-b677-36572033ae04",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "activitylog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "The current timestamp"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minDuration",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxDuration",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0d49e2f-153b-4938-9c79-44bab3417d3c",
+          "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will b",
+          "request": {
+            "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will b",
+            "description": {
+              "content": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will be from the computer perspective.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "v2",
+                "workinghours",
+                "computers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The starting date. Format: YYYY-MM-DD."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The end date (inclusive). Format: YYYY-MM-DD."
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The specific device id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number used in pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "150",
+                  "description": "The page size for the number of results to return per request. The maximum value is 1000."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f2390f83-2498-408c-bcb3-237591f89268",
+              "name": "A response with the Report for Computers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "computers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activity\": [\n    {\n      \"date\": \"1952-10-16T14:40:18.784Z\",\n      \"userId\": 4310,\n      \"computerId\": 8415,\n      \"user\": \"string\",\n      \"computer\": \"string\",\n      \"groups\": [\n        [],\n        []\n      ],\n      \"computers\": [\n        [],\n        []\n      ],\n      \"users\": [\n        [],\n        []\n      ],\n      \"firstActivity\": \"1954-07-10T17:21:57.067Z\",\n      \"lastActivity\": \"2005-03-17T00:46:38.741Z\",\n      \"lastActivityLog\": \"1981-09-01T07:50:22.415Z\",\n      \"activeTime\": {\n        \"productive\": 5553,\n        \"unproductive\": 5865,\n        \"undefined\": 6783,\n        \"total\": 9164\n      },\n      \"passiveTime\": {\n        \"productive\": 2011,\n        \"unproductive\": 4854,\n        \"undefined\": 7896,\n        \"total\": 8372\n      },\n      \"totalTime\": 9805\n    },\n    {\n      \"date\": \"1988-12-23T03:01:07.562Z\",\n      \"userId\": 469,\n      \"computerId\": 6273,\n      \"user\": \"string\",\n      \"computer\": \"string\",\n      \"groups\": [\n        [],\n        []\n      ],\n      \"computers\": [\n        [],\n        []\n      ],\n      \"users\": [\n        [],\n        []\n      ],\n      \"firstActivity\": \"1993-03-25T09:26:47.526Z\",\n      \"lastActivity\": \"2002-05-02T03:33:02.407Z\",\n      \"lastActivityLog\": \"1985-05-25T18:07:20.781Z\",\n      \"activeTime\": {\n        \"productive\": 2473,\n        \"unproductive\": 3614,\n        \"undefined\": 8475,\n        \"total\": 5512\n      },\n      \"passiveTime\": {\n        \"productive\": 9369,\n        \"unproductive\": 1201,\n        \"undefined\": 4981,\n        \"total\": 7864\n      },\n      \"totalTime\": 9845\n    }\n  ],\n  \"total\": 3398\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68a8e0c1-6620-480b-867b-b40168fc34f6",
+              "name": "Bad request. Failed StatusResponse with an error message indicating the reason of the failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "computers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25c3bb91-ffe4-4f58-bfc4-2a64dc77342d",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "computers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "188d4826-b4df-4a96-a524-67c9739dede4",
+          "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is fro",
+          "request": {
+            "name": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is fro",
+            "description": {
+              "content": "This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is from the user's perspective.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "v2",
+                "workinghours",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The starting date. Format: YYYY-MM-DD."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The end date (inclusive). Format: YYYY-MM-DD."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "The specific client Id to fetch data. The default value of -1 returns data \"all users\". Only one of the fields(clientId, groupId, deviceId) can be sent per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "The specific group Id to fetch data. Only one of the fields (clientId, groupId, deviceId) can be sent per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number used in pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "150",
+                  "description": "The page size for the number of results to return per request. The maximum value is 1000."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb200ce0-3235-466b-9bdc-78014d6f7337",
+              "name": "A response with the Report for Users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activity\": [\n    {\n      \"date\": \"2023-08-08T09:54:28.688Z\",\n      \"userId\": 4915,\n      \"computerId\": 6390,\n      \"user\": \"string\",\n      \"computer\": \"string\",\n      \"groups\": [\n        [],\n        []\n      ],\n      \"computers\": [\n        [],\n        []\n      ],\n      \"users\": [\n        [],\n        []\n      ],\n      \"firstActivity\": \"1985-07-16T10:43:31.740Z\",\n      \"lastActivity\": \"2002-01-26T08:04:25.452Z\",\n      \"lastActivityLog\": \"1999-08-16T10:10:27.587Z\",\n      \"activeTime\": {\n        \"productive\": 3760,\n        \"unproductive\": 3013,\n        \"undefined\": 847,\n        \"total\": 9986\n      },\n      \"passiveTime\": {\n        \"productive\": 2734,\n        \"unproductive\": 5932,\n        \"undefined\": 7740,\n        \"total\": 5387\n      },\n      \"totalTime\": 3521,\n      \"TotalOfflineMeetings\": 4545,\n      \"location\": \"string\"\n    },\n    {\n      \"date\": \"2017-10-15T07:34:47.540Z\",\n      \"userId\": 5957,\n      \"computerId\": 7949,\n      \"user\": \"string\",\n      \"computer\": \"string\",\n      \"groups\": [\n        [],\n        []\n      ],\n      \"computers\": [\n        [],\n        []\n      ],\n      \"users\": [\n        [],\n        []\n      ],\n      \"firstActivity\": \"1955-05-22T15:12:27.259Z\",\n      \"lastActivity\": \"1963-05-27T12:26:58.155Z\",\n      \"lastActivityLog\": \"2017-05-22T23:32:10.733Z\",\n      \"activeTime\": {\n        \"productive\": 1077,\n        \"unproductive\": 8048,\n        \"undefined\": 668,\n        \"total\": 6610\n      },\n      \"passiveTime\": {\n        \"productive\": 6321,\n        \"unproductive\": 5100,\n        \"undefined\": 7677,\n        \"total\": 3126\n      },\n      \"totalTime\": 1048,\n      \"TotalOfflineMeetings\": 9281,\n      \"location\": \"string\"\n    }\n  ],\n  \"total\": 3815\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c6f3f6e-587f-496e-a6e0-572302b54cb6",
+              "name": "Bad request. Failed with an error message indicating the reason of the failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5855a6f4-b609-4dc1-a94c-a4cb013eb85b",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "v2",
+                    "workinghours",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "150"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.activtrak.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6665f35b-663c-4f03-ba2b-c0042ce7c7f5",
+    "name": "ActivTrak Public APIs Administration Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ActivTrak's Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/\n\nContact Support:\n Name: ActivTrak Support\n Email: support@activtrak.com",
+      "type": "text/plain"
+    }
+  }
+}

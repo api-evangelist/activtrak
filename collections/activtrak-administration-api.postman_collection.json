@@ -1,0 +1,1363 @@
+{
+  "item": [
+    {
+      "id": "3c190b62-da66-428c-aa86-040a7204e449",
+      "name": "Administration",
+      "description": {
+        "content": "Administer the ActivTrak account (clients, consumers). Beta.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3445bb05-d217-4e2c-a3a8-594c4aeb2c98",
+          "name": "This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.",
+          "request": {
+            "name": "This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.",
+            "description": {
+              "content": "This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b7a38c2-7f80-4f65-bf3c-7576f6c39609",
+              "name": "Returns a paged list of clients for the account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 576,\n  \"domain\": \"string\",\n  \"name\": \"string\",\n  \"alias\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c9f673f-4364-4e84-9f84-559a1d9ee320",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45559683-efa4-469b-81ab-bf6a3ae48e96",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d7a4dc4-e170-4624-b0db-5b2733792f68",
+          "name": "Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+          "request": {
+            "name": "Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+            "description": {
+              "content": "Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nWhen specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.\n\nConsumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1` and `groupname` `All Users and Groups (current and future)` so they can view all current and future groups.\n\nConsumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid` or `groupname` or to all current and future groups by providing `-1` in the `groupid`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1204b5f4-57bf-4a5c-a156-0bf649e50c19",
+              "name": "A list of success and/or failures of consumers identifier with warning/error messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"succeded\": [\n    {\n      \"0\": {\n        \"id\": 8612,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 3505,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"failed\": [\n    {\n      \"0\": {\n        \"id\": 3829,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 5555,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"messages\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5169bc6-82f5-49f3-997e-4338aaaf533f",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e85340e-7ad3-4908-b966-3b69ab198c49",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d3fd3a1-ebd8-4b93-b3a5-29cd036b4ebf",
+          "name": "Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+          "request": {
+            "name": "Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+            "description": {
+              "content": "Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nThe following list can have one or both, but must have one or the other: `consumerIds`, `usernames`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa168b26-077f-46a5-a530-06a54abd3f22",
+              "name": "A list of success and/or failures of consumers identifier with warning/error messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"succeded\": [\n    {\n      \"0\": {\n        \"id\": 8612,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 3505,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"failed\": [\n    {\n      \"0\": {\n        \"id\": 3829,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 5555,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"messages\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "286f264a-2b1f-4a7b-bf3b-af29776315de",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9d6d2fc-c4cb-40d5-b828-7df17bda39d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18d488ba-b6f0-4d1b-beee-cbb17799a221",
+          "name": "This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups th",
+          "request": {
+            "name": "This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups th",
+            "description": {
+              "content": "This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups that the corresponding `consumer` has access to. If `includeViewableGroups` is not included in the URL query parameters, the default value will be `false`.\n\nWhen `includeViewableGroups` is set to `true`, consumers with the roles of `PowerUser` and `Viewer` will have all their groups listed in `viewableGroups` . Consumers with `groupid` `-1` `groupname` `All Users and Groups (current and future)` indicates that they have access to all current and future Users and Groups.\n\nLastly, consumers with the roles of `Admin` and `Configurator` will have `groupid` `-1` `groupname` `All Users and Groups (current and future)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeViewableGroups",
+                  "value": "<int32>",
+                  "description": "Set to true to display Viewable Groups in the Response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df1ea04a-1644-4479-b21c-c113108c439d",
+              "name": "A list of all consumers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeViewableGroups",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"id\": 469,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"username\": \"string\",\n        \"email\": \"string\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": 8161,\n              \"name\": \"string\",\n              \"displayname\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": 6392,\n              \"name\": \"string\",\n              \"displayname\": \"string\"\n            }\n          }\n        ],\n        \"ssoEnabled\": true,\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": 8074,\n              \"groupname\": \"string\",\n              \"goalsetter\": true\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": 753,\n              \"groupname\": \"string\",\n              \"goalsetter\": true\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 198,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"username\": \"string\",\n        \"email\": \"string\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": 4138,\n              \"name\": \"string\",\n              \"displayname\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": 2969,\n              \"name\": \"string\",\n              \"displayname\": \"string\"\n            }\n          }\n        ],\n        \"ssoEnabled\": true,\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": 6528,\n              \"groupname\": \"string\",\n              \"goalsetter\": false\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": 2750,\n              \"groupname\": \"string\",\n              \"goalsetter\": true\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a158cab-2fa0-4a48-b5fd-f059a06ec9a1",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeViewableGroups",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7d2a204-4601-4244-9279-3f530acc046c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeViewableGroups",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b981f85-5e1a-4b07-a345-9833c10bbe57",
+          "name": "Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\n",
+          "request": {
+            "name": "Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\n",
+            "description": {
+              "content": "Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nEither `id` or `username` may be used to identify a consumer to patch.\n\nPatching can be used for any combination of the following fields: `viewableGroups`, `roles`, `ssoEnabled`\n\nWhen specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.\n\nConsumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1` and `groupname` `All Users and Groups (current and future)` so they can view all current and future groups.\n\nConsumers with role `PowerUser` or `Viewer` may be given access to specific and existing `groupid` or `groupname` or to all current and future groups by providing `-1` in the `groupid`.\n\nIf the `groupid` has the value of `-1`, the consumer's `viewableGroups` shall be `All Users and Groups (current and future)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed184a7b-c6c0-4004-b296-bd910ad22c42",
+              "name": "A list of success and/or failures of consumers identifier with warning/error messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"succeded\": [\n    {\n      \"0\": {\n        \"id\": 8612,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 3505,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"failed\": [\n    {\n      \"0\": {\n        \"id\": 3829,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": 5555,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"messages\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61a1a19e-ee08-4d14-a73c-57a1e51c01f6",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e45e3550-96d6-4fa7-8b90-5c0f2a3b46e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumers\": [\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"0\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"roles\": [\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          },\n          {\n            \"0\": {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"displayname\": \"<string>\"\n            }\n          }\n        ],\n        \"ssoEnabled\": \"<boolean>\",\n        \"viewableGroups\": [\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          },\n          {\n            \"0\": {\n              \"groupid\": \"<integer>\",\n              \"groupname\": \"<string>\",\n              \"goalsetter\": \"<boolean>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43635b3e-7bdd-44e3-ab70-35cd98f0198a",
+          "name": "Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the",
+          "request": {
+            "name": "Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the",
+            "description": {
+              "content": "Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the error.\n\nIf the consumer has a role of `PowerUser` or `Viewer` , they will have all their groups listed in `viewableGroups` . If their `groupid` is `-1` and `groupname` `All Users and Groups (current and future)` it indicates that they have access to all current and future Users and Groups.\n\nLastly, if the consumer has a role of `Admin` and `Configurator` they will will have `groupid` `-1` `groupname` `All Users and Groups (current and future)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "consumers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of an existing consumer whose information will be returned."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6ebea308-5b55-4704-a84a-3daa7b480860",
+              "name": "The consumer's data object that matches the identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of an existing consumer whose information will be returned."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"consumer\": {\n    \"id\": 1922,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"roles\": [\n      {\n        \"0\": {\n          \"id\": 1242,\n          \"name\": \"string\",\n          \"displayname\": \"string\"\n        }\n      },\n      {\n        \"0\": {\n          \"id\": 517,\n          \"name\": \"string\",\n          \"displayname\": \"string\"\n        }\n      }\n    ],\n    \"ssoEnabled\": true,\n    \"viewableGroups\": [\n      {\n        \"0\": {\n          \"groupid\": 2757,\n          \"groupname\": \"string\",\n          \"goalsetter\": true\n        }\n      },\n      {\n        \"0\": {\n          \"groupid\": 1317,\n          \"groupname\": \"string\",\n          \"goalsetter\": false\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c523e4ef-d8de-4de6-8998-4d56a5de8b2e",
+              "name": "Bad Request. Failed StatusResponse with an error message indicating the reason of the failure, and success equal to false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of an existing consumer whose information will be returned."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c6902d7-c147-4acd-ae81-7e9f1198ec3c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of an existing consumer whose information will be returned."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef937c50-5b13-445e-888e-69d15af6c14d",
+              "name": "Failed StatusResponse with an error message indicating that the consumer couldn't be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "consumers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of an existing consumer whose information will be returned."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    [],\n    []\n  ],\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.activtrak.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22173b47-3157-4ac8-bc38-61c95d800f5b",
+    "name": "ActivTrak Public APIs Administration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ActivTrak's Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/\n\nContact Support:\n Name: ActivTrak Support\n Email: support@activtrak.com",
+      "type": "text/plain"
+    }
+  }
+}

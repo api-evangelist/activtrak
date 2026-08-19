@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActivTrak Public APIs Administration Bulk Import API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "This API call will allow the import of user data for automating user management. This endpoint accepts files in CSV form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.activtrak.com/hrdc/v2/bulk",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call will allow the import of user data for automating user management. This endpoint accepts files in CSV format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

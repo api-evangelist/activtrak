@@ -1,0 +1,2843 @@
+{
+  "item": [
+    {
+      "id": "e6872768-cfde-4219-9bb6-0decee57e203",
+      "name": "Administration - SCIM",
+      "description": {
+        "content": "SCIM 2.0 user and group management. Beta.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12fc859d-0330-474d-acb7-efc0c84f567b",
+          "name": "Creates a new ActivTrak Group.",
+          "request": {
+            "name": "Creates a new ActivTrak Group.",
+            "description": {
+              "content": "Creates a new ActivTrak Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54390a39-de3a-4b29-ab61-4af33458e817",
+              "name": "Returns the newly created Group.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"string\",\n    \"lastModified\": \"string\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group\": {\n    \"sourceType\": 9598.614913158766,\n    \"instanceId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6b454dc-230f-43b3-accb-f70f2248343b",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9298aa4d-3a60-4cd8-b7b0-3456bcd8f028",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e84345ed-c701-4b0b-8d01-932c6aec02bc",
+          "name": "Returns a list of ActivTrak Groups.",
+          "request": {
+            "name": "Returns a list of ActivTrak Groups.",
+            "description": {
+              "content": "Returns a list of ActivTrak Groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<string>",
+                  "description": "The amount of groups to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "startIndex",
+                  "value": "<string>",
+                  "description": "The page number of results to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5239d893-b636-4837-beb0-afc3f60e9c99",
+              "name": "Returns a list of ActivTrak Groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"totalResults\": 100,\n  \"itemsPerPage\": 2456,\n  \"startIndex\": 4348,\n  \"resources\": [\n    {\n      \"0\": {\n        \"schemas\": [\n          {\n            \"0\": \"string\"\n          },\n          {\n            \"0\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"members\": [\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"meta\": {\n          \"resourceType\": \"string\",\n          \"created\": \"string\",\n          \"lastModified\": \"string\",\n          \"location\": \"string\",\n          \"version\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group\": {\n          \"sourceType\": 6856.2650395097935,\n          \"instanceId\": \"string\"\n        }\n      }\n    },\n    {\n      \"0\": {\n        \"schemas\": [\n          {\n            \"0\": \"string\"\n          },\n          {\n            \"0\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"members\": [\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"meta\": {\n          \"resourceType\": \"string\",\n          \"created\": \"string\",\n          \"lastModified\": \"string\",\n          \"location\": \"string\",\n          \"version\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group\": {\n          \"sourceType\": 2461.6615218531592,\n          \"instanceId\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6650f89a-b39f-43e7-bf6d-a368ae23fdb5",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "32b22f79-51e5-47c5-b901-ae3a15d2eba2",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c909f69-7b57-4be5-bbc9-e2db4c728dac",
+          "name": "Deletes an ActivTrak Group.",
+          "request": {
+            "name": "Deletes an ActivTrak Group.",
+            "description": {
+              "content": "Deletes an ActivTrak Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "469b2415-52cf-401e-8b34-8a0119378ddf",
+              "name": "Returns the HTTP status code result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a98686e-b069-478f-9da1-25ae7d4e61cc",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e65ba96-8ad6-44df-95f6-e7abd0efdaae",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf6f523f-d1fa-4940-bccd-6e2a207b5261",
+          "name": "Returns a single ActivTrak Group by ID.",
+          "request": {
+            "name": "Returns a single ActivTrak Group by ID.",
+            "description": {
+              "content": "Returns a single ActivTrak Group by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05043c81-6057-44f3-9384-27cf5cf70118",
+              "name": "Returns a single ActivTrak Group by ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"1993-03-05T05:42:39.549Z\",\n    \"lastModified\": \"1986-01-30T09:18:29.470Z\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group\": {\n    \"sourceType\": 3888.4864434692936,\n    \"instanceId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6fce8fe-1753-4dba-a84d-4d6174482b8b",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f597f807-afac-4739-80d9-c086d56d1b6e",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc4989ba-2fdc-481a-bb18-aac5e93d83c0",
+          "name": "Updates an existing ActivTrak Group by replacing it with the provided entity.",
+          "request": {
+            "name": "Updates an existing ActivTrak Group by replacing it with the provided entity.",
+            "description": {
+              "content": "Updates an existing ActivTrak Group by replacing it with the provided entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0018e19-0800-47ef-9a25-dd1c11b79c6f",
+              "name": "Returns the updated ActivTrak Group.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"string\",\n    \"lastModified\": \"string\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:Group\": {\n    \"sourceType\": 9598.614913158766,\n    \"instanceId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ee756b1-67a1-48aa-ba6e-fed2586875e4",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3eb4473e-eae7-40ce-801f-0067183f02f0",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\"\n    }\n  ],\n  \"displayName\": \"<string>\",\n  \"members\": [\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08a1ab7f-4ec7-4e53-bc84-c2c51a2d8062",
+          "name": "Returns the API's uptime status.",
+          "request": {
+            "name": "Returns the API's uptime status.",
+            "description": {
+              "content": "Returns the API's uptime status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e578e42-fd83-47d8-a591-3a90c81fa3a0",
+              "name": "Returns the message \"Pong\" indicating successful API ping.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3dea3b9-9889-46dc-a036-863035f86f07",
+          "name": "Returns a specified SCIM schema by URI.",
+          "request": {
+            "name": "Returns a specified SCIM schema by URI.",
+            "description": {
+              "content": "Returns a specified SCIM schema by URI.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "schemas",
+                ":schemaUri"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int32>",
+                  "key": "schemaUri",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23c3cee8-a428-4bdb-9826-36604df89491",
+              "name": "Returns a specified SCIM schema by URI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "schemas",
+                    ":schemaUri"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int32>",
+                      "key": "schemaUri",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6abc12eb-77f9-4bbe-8f23-2a9a305cd040",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "schemas",
+                    ":schemaUri"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int32>",
+                      "key": "schemaUri",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b83663ff-2180-4dc6-a844-73288b7ecd08",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "schemas",
+                    ":schemaUri"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int32>",
+                      "key": "schemaUri",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6edb818e-7f17-460f-8bc1-9201d00a2a6c",
+          "name": "Returns a list of supported SCIM schemas.",
+          "request": {
+            "name": "Returns a list of supported SCIM schemas.",
+            "description": {
+              "content": "Returns a list of supported SCIM schemas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01a9e721-5906-4e41-b6ab-3c22a353f61e",
+              "name": "Returns a list of supported SCIM schemas.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"totalResults\": 867,\n  \"resources\": [\n    {\n      \"0\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fce14864-38ef-405f-a3ea-d8d980ec60ce",
+          "name": "Creates a new ActivTrak User.\n\nIf the User already exists in ActivTrak, the new information associated with the User is ",
+          "request": {
+            "name": "Creates a new ActivTrak User.\n\nIf the User already exists in ActivTrak, the new information associated with the User is ",
+            "description": {
+              "content": "Creates a new ActivTrak User.\n\nIf the User already exists in ActivTrak, the new information associated with the User is updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b569db2-d202-420e-96a2-61a21245e814",
+              "name": "Returns the newly created User.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"userName\": \"string\",\n  \"name\": {\n    \"familyName\": \"string\",\n    \"givenName\": \"string\",\n    \"middleName\": \"string\"\n  },\n  \"displayName\": \"string\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": true,\n        \"value\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    }\n  ],\n  \"active\": false,\n  \"groups\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"string\",\n    \"lastModified\": \"string\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"tracking\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0102ece8-5789-4721-9261-6c566a3d13cf",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b96f81d-0c81-4822-8d7a-9b096fbb17b6",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53ad9395-9867-4ab4-a61a-bd52f50ffd30",
+          "name": "Returns a list of ActivTrak Users.",
+          "request": {
+            "name": "Returns a list of ActivTrak Users.",
+            "description": {
+              "content": "Returns a list of ActivTrak Users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<string>",
+                  "description": "The amount of users to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "startIndex",
+                  "value": "<string>",
+                  "description": "The page number of results to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dfd852c5-b25c-4ca3-801d-9ef1091afd77",
+              "name": "Returns a list of ActivTrak Users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"totalResults\": 6326,\n  \"itemsPerPage\": 7605,\n  \"startIndex\": 6049,\n  \"resources\": [\n    {\n      \"0\": {\n        \"schemas\": [\n          {\n            \"0\": \"string\"\n          },\n          {\n            \"0\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"userName\": \"string\",\n        \"name\": {\n          \"familyName\": \"string\",\n          \"givenName\": \"string\",\n          \"middleName\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"emails\": [\n          {\n            \"0\": {\n              \"primary\": true,\n              \"value\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"primary\": false,\n              \"value\": \"string\"\n            }\n          }\n        ],\n        \"active\": true,\n        \"groups\": [\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"meta\": {\n          \"resourceType\": \"string\",\n          \"created\": \"1960-02-07T20:00:36.369Z\",\n          \"lastModified\": \"2001-11-21T17:38:35.033Z\",\n          \"location\": \"string\",\n          \"version\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n          \"employeeNumber\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n          \"tracking\": true\n        }\n      }\n    },\n    {\n      \"0\": {\n        \"schemas\": [\n          {\n            \"0\": \"string\"\n          },\n          {\n            \"0\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"userName\": \"string\",\n        \"name\": {\n          \"familyName\": \"string\",\n          \"givenName\": \"string\",\n          \"middleName\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"emails\": [\n          {\n            \"0\": {\n              \"primary\": false,\n              \"value\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"primary\": true,\n              \"value\": \"string\"\n            }\n          }\n        ],\n        \"active\": false,\n        \"groups\": [\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"0\": {\n              \"value\": \"string\",\n              \"display\": \"string\",\n              \"$ref\": \"string\",\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"meta\": {\n          \"resourceType\": \"string\",\n          \"created\": \"1953-11-24T10:22:22.528Z\",\n          \"lastModified\": \"1993-01-11T10:03:29.642Z\",\n          \"location\": \"string\",\n          \"version\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n          \"employeeNumber\": \"string\"\n        },\n        \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n          \"tracking\": false\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74fb90f2-2559-4a30-89ad-4a20ed178dc9",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80a4dd1f-e458-4777-9b17-143e2cad2b8a",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startIndex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd66db86-4ce5-495d-b61a-0ad7d8d44bd8",
+          "name": "Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.",
+          "request": {
+            "name": "Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.",
+            "description": {
+              "content": "Adds an ActivTrak User to the Do Not Track list and deletes their associated user agents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84dd87e0-37fc-4db5-a997-bef97d43c741",
+              "name": "Returns the HTTP status code result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6155a76-be40-4928-bdd0-668415add2e4",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b953b0d7-7187-4986-b6f0-aad1639676d3",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46a68c0f-1f0d-453d-9f33-702e81727039",
+          "name": "Returns a single ActivTrak User by ID.",
+          "request": {
+            "name": "Returns a single ActivTrak User by ID.",
+            "description": {
+              "content": "Returns a single ActivTrak User by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af7f914e-5e90-4bf0-a39e-955a368f11ca",
+              "name": "Returns a single ActivTrak User by ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"userName\": \"string\",\n  \"name\": {\n    \"familyName\": \"string\",\n    \"givenName\": \"string\",\n    \"middleName\": \"string\"\n  },\n  \"displayName\": \"string\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    }\n  ],\n  \"active\": false,\n  \"groups\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"2021-10-29T19:55:35.722Z\",\n    \"lastModified\": \"1971-12-18T03:37:34.290Z\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"tracking\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31151d42-37ef-4bd9-8265-5685f0fdb153",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a93a0d89-bcc8-47e5-b2e6-98b0bd76b83e",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "884c05b8-1e8c-45fb-8f26-1c385fb7c91a",
+          "name": "Updates an existing ActivTrak User by replacing it with the provided entity.",
+          "request": {
+            "name": "Updates an existing ActivTrak User by replacing it with the provided entity.",
+            "description": {
+              "content": "Updates an existing ActivTrak User by replacing it with the provided entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scim",
+                "v1",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40a230c8-3ede-4558-8a7b-07583c7b622c",
+              "name": "Returns the updated ActivTrak User.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schemas\": [\n    {\n      \"0\": \"string\"\n    },\n    {\n      \"0\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"userName\": \"string\",\n  \"name\": {\n    \"familyName\": \"string\",\n    \"givenName\": \"string\",\n    \"middleName\": \"string\"\n  },\n  \"displayName\": \"string\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": true,\n        \"value\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    }\n  ],\n  \"active\": false,\n  \"groups\": [\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"0\": {\n        \"value\": \"string\",\n        \"display\": \"string\",\n        \"$ref\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": \"string\",\n    \"lastModified\": \"string\",\n    \"location\": \"string\",\n    \"version\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"string\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"tracking\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adab6b88-9322-4bef-95a3-215aecbd4565",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04f54059-51bf-47ac-8228-af8fff81b588",
+              "name": "Error status with failure reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scim",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schemas\": [\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    },\n    {\n      \"0\": \"<string>\",\n      \"1\": \"<string>\",\n      \"2\": \"<string>\"\n    }\n  ],\n  \"name\": {\n    \"familyName\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"emails\": [\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    {\n      \"0\": {\n        \"primary\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n    \"employeeNumber\": \"<string>\"\n  },\n  \"urn:ietf:params:scim:schemas:extension:activtrak:2.0:User\": {\n    \"userPrincipalNames\": [\n      {\n        \"0\": \"<string>\"\n      },\n      {\n        \"0\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.activtrak.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b6ec17ff-3923-498b-a859-0879d18fdcd8",
+    "name": "ActivTrak Public APIs Administration Administration - SCIM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ActivTrak's Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/\n\nContact Support:\n Name: ActivTrak Support\n Email: support@activtrak.com",
+      "type": "text/plain"
+    }
+  }
+}

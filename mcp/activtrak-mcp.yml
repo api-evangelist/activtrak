@@ -120,3 +120,9 @@ tools:
   path: /reports/v2/workinghours/users
   description: This API call returns a list of Working Hour Activity objects along with a total (used
     for pagination). This data is fro
+deployment:
+  mode: none
+  verified: derived
+  tools: 23
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActivTrak Public APIs Administration API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Administration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/admin/v1/clients",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients."
+        },
+        {
+          "info": {
+            "name": "This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups th",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/admin/v1/consumers",
+            "params": [
+              {
+                "name": "includeViewableGroups",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to display Viewable Groups in the Response"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups that the corresponding `consumer` has access to. If `includeViewableGroups` is not included in the URL query parameters, the default value will be `false`.\n\nWhen `includeViewableGroups` is set to `true`, consumers with the roles of `PowerUser` and `Viewer` will have all their groups listed in `viewableGroups` . Consumers with `groupid` `-1` `groupname` `All Users and Groups (curr"
+        },
+        {
+          "info": {
+            "name": "Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.activtrak.com/admin/v1/consumers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nWhen specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.\n\nConsumers with role `Admin` or `Configurator` will automatically have `groupid` with value `-1` and `groupname` `All Users and Groups (current and future)` so they can view all current and future groups.\n\nConsumers with r"
+        },
+        {
+          "info": {
+            "name": "Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\n",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.activtrak.com/admin/v1/consumers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nEither `id` or `username` may be used to identify a consumer to patch.\n\nPatching can be used for any combination of the following fields: `viewableGroups`, `roles`, `ssoEnabled`\n\nWhen specifying roles, only the following roles are allowed: `Admin`, `Configurator`, `PowerUser`, `Viewer`and only one role is allow in the `roles` array.\n\nConsumers with role `Admin` or `Configurator"
+        },
+        {
+          "info": {
+            "name": "Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.activtrak.com/admin/v1/consumers",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.\n\nThe following list can have one or both, but must have one or the other: `consumerIds`, `usernames`"
+        },
+        {
+          "info": {
+            "name": "Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.activtrak.com/admin/v1/consumers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of an existing consumer whose information will be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the error.\n\nIf the consumer has a role of `PowerUser` or `Viewer` , they will have all their groups listed in `viewableGroups` . If their `groupid` is `-1` and `groupname` `All Users and Groups (current and future)` it indicates that they have access to all current and future Users and Groups.\n\nLastly, if the consumer has a role of `Admin` and `Configurator` they will will have `g"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
