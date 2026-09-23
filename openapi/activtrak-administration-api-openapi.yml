@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ActivTrak Public APIs Administration API
+  title: ActivTrak Public Administration API
   version: v2
   description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
   contact:
@@ -28,7 +28,7 @@ paths:
   /admin/v1/clients:
     get:
       operationId: getAllClients
-      summary: This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.
+      summary: This API call returns a paged list of `Clients`.
       tags:
       - Administration
       description: This API call returns a paged list of `Clients`. It returns the first page with up to 50 clients.
@@ -93,7 +93,7 @@ paths:
   /admin/v1/consumers:
     post:
       operationId: createConsumers
-      summary: Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+      summary: Create `Consumers` from the list provided.
       tags:
       - Administration
       description: 'Create `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
@@ -234,7 +234,7 @@ paths:
       - ApiKeyAuth: []
     delete:
       operationId: deleteConsumers
-      summary: Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
+      summary: Delete `Consumers` from the list provided.
       tags:
       - Administration
       description: 'Delete `Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
@@ -316,7 +316,7 @@ paths:
       - ApiKeyAuth: []
     get:
       operationId: getAllConsumers
-      summary: This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups th
+      summary: This returns a list of all `Consumers`.
       tags:
       - Administration
       description: 'This returns a list of all `Consumers`. The optional paramater `includeViewableGroups` will return the list of Groups that the corresponding `consumer` has access to. If `includeViewableGroups` is not included in the URL query parameters, the default value will be `false`.
@@ -426,10 +426,7 @@ paths:
       - ApiKeyAuth: []
     patch:
       operationId: patchConsumers
-      summary: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
-
-
-        '
+      summary: Patch`Consumers` from the list provided.
       tags:
       - Administration
       description: 'Patch`Consumers` from the list provided. Response shall contain a list of success, falures and warning/error messages.
@@ -579,7 +576,7 @@ paths:
   /admin/v1/consumers/{id}:
     get:
       operationId: getConsumer
-      summary: Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the
+      summary: Given an ID, this returns a `Consumer`.
       tags:
       - Administration
       description: 'Given an ID, this returns a `Consumer`. If the consumer is not found, a StatusResponse object is returned indicating the error.

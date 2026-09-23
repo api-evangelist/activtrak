@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ActivTrak Public APIs Administration Reports API
+  title: ActivTrak Public Reports API
   version: v2
   description: 'ActivTrak''s Public APIs provide REST endpoints for accessing digital activity reports (Live Data API) and for administering an ActivTrak instance (users, groups via SCIM 2.0, clients, consumers) plus bulk HR data import. Authentication is via an API key. Reference: https://developers.activtrak.com/'
   contact:
@@ -31,7 +31,6 @@ paths:
       summary: This API call returns a list of Activity Log objects
       tags:
       - Reports
-      description: This API call returns a list of Activity Log objects
       parameters:
       - name: startDate
         in: query
@@ -203,7 +202,7 @@ paths:
   /reports/v2/workinghours/computers:
     get:
       operationId: getWorkingHoursForComputers
-      summary: This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will b
+      summary: This API call returns a list of Working Hour Activity objects along with a…
       tags:
       - Reports
       description: This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data will be from the computer perspective.
@@ -359,7 +358,7 @@ paths:
   /reports/v2/workinghours/users:
     get:
       operationId: getWorkingHoursForUsers
-      summary: This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is fro
+      summary: This API call returns a list of Working Hour Activity objects along with a…
       tags:
       - Reports
       description: This API call returns a list of Working Hour Activity objects along with a total (used for pagination). This data is from the user's perspective.

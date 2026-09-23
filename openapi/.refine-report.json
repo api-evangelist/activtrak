@@ -1,10 +1,7 @@
 {
   "provider": "activtrak",
   "sources": [
-    "activtrak-administration-api-openapi.yml",
-    "activtrak-administration-scim-api-openapi.yml",
-    "activtrak-bulk-import-api-openapi.yml",
-    "activtrak-reports-api-openapi.yml"
+    "_original/activtrak-openapi-original.yaml"
   ],
   "outputs": [
     "activtrak-administration-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "activtrak-openapi-original.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "activtrak-administration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "activtrak-administration-scim-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "activtrak-bulk-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "activtrak-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
