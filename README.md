@@ -64,6 +64,124 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ActivTrak is a company surfaced as a portfolio company of sapphire-ventures and added to the API Evangelist network as a stub for enrichment. Sector: saas. This profile is a lead awaiting the enrichment pipeline.
+ActivTrak is a workforce analytics and productivity-monitoring SaaS platform. Its Public APIs (v2) expose REST endpoints across three surfaces: the Live Data / Reports API (Working Hours and Activity Log), account administration (Clients, Consumers, and full SCIM 2.0 user and group management), and a Bulk Import HR Data Connector for CSV-driven user provisioning. Authentication is via an API key sent in the x-api-key header (a Bearer form is also accepted on some endpoints). Regional hosts are available for the United States, European Union, United Kingdom, Canada, and Australia. ActivTrak is backed by Sapphire Ventures and is profiled in the API Evangelist network.
 
-Backed by: sapphire-ventures — https://www.activtrak.com/
+**Areas:** Company · Software-as-a-Service · Workforce Analytics · Productivity · Employee Monitoring · Workforce Management · SCIM · Reporting
+
+## ActivTrak on APIs.io
+
+Everything profiled for ActivTrak is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/activtrak/](https://apis.io/providers/activtrak/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [ActivTrak Administration API](https://apis.io/apis/activtrak/activtrak-administration-api/) — Administer the ActivTrak account (clients, consumers). Beta.
+- [ActivTrak Administration - SCIM API](https://apis.io/apis/activtrak/activtrak-administration-scim-api/) — SCIM 2.0 user and group management. Beta.
+- [ActivTrak Bulk Import API](https://apis.io/apis/activtrak/activtrak-bulk-import-api/) — HR Data Connector - submit CSV bulk user data.
+- [ActivTrak Reports API](https://apis.io/apis/activtrak/activtrak-reports-api/) — Live Data API - query activity reports (Working Hours, Activity Log).
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [activtrak](https://apis.io/servers/activtrak/activtrak/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Activtrak Agentic Access](https://apis.io/agentic-access/activtrak/activtrak-agentic-access/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [ActivTrak Public APIs Administration API](https://apis.io/collections/activtrak/open-activtrak-administration-api/)
+- [ActivTrak Public APIs Administration Administration - SCIM API](https://apis.io/collections/activtrak/open-activtrak-administration-scim-api/)
+- [ActivTrak Public APIs Administration Bulk Import API](https://apis.io/collections/activtrak/open-activtrak-bulk-import-api/)
+- [ActivTrak Public APIs Administration Reports API](https://apis.io/collections/activtrak/open-activtrak-reports-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Activtrak Openapi Original Overlay](https://apis.io/overlays/activtrak/activtrak-openapi-original-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Activtrak Authentication](https://apis.io/security/activtrak/activtrak-authentication/)
+- [Activtrak Domain Security](https://apis.io/security/activtrak/activtrak-domain-security/)
+- [Activtrak Trust Center](https://apis.io/security/activtrak/activtrak-trust-center/)
+- [Activtrak Vulnerability Disclosure](https://apis.io/security/activtrak/activtrak-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.activtrak.com/)
+- [Documentation](https://developers.activtrak.com/)
+- [API reference](https://developers.activtrak.com/)
+- [Pricing](https://www.activtrak.com/pricing/)
+- [Support](https://support.activtrak.com/hc/en-us)
+- [Changelog](https://developers.activtrak.com/changelog/activtrak/activtrak-public-apis)
+- [Blog](https://www.activtrak.com/blog/)
+- [Privacy policy](https://www.activtrak.com/privacy-policy/)
+- [Status](https://status.activtrak.com/)
+
+## API Evangelist rating
+
+**Kin Score 49.3** — developing · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 55.9 |
+| Contract governance | 4.5 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 43.4 |
+
+**Agent readiness 18.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/activtrak/](https://apis.io/providers/activtrak/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ActivTrak: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/activtrak/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
