@@ -93,7 +93,7 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Activtrak Agentic Access](https://apis.io/agentic-access/activtrak/activtrak-agentic-access/)
+- [ActivTrak Agentic Access](https://apis.io/agentic-access/activtrak/activtrak-agentic-access/)
 
 #### Collections (4)
 
@@ -108,16 +108,35 @@ Postman and Open Collection request collections.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Activtrak Openapi Original Overlay](https://apis.io/overlays/activtrak/activtrak-openapi-original-overlay/)
+- [ActivTrak Openapi Original Overlay](https://apis.io/overlays/activtrak/activtrak-openapi-original-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [ActivTrak API Rules](https://apis.io/rules/activtrak/activtrak-rules/)
 
 #### Security (4)
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Activtrak Authentication](https://apis.io/security/activtrak/activtrak-authentication/)
-- [Activtrak Domain Security](https://apis.io/security/activtrak/activtrak-domain-security/)
-- [Activtrak Trust Center](https://apis.io/security/activtrak/activtrak-trust-center/)
-- [Activtrak Vulnerability Disclosure](https://apis.io/security/activtrak/activtrak-vulnerability-disclosure/)
+- [ActivTrak Authentication](https://apis.io/security/activtrak/activtrak-authentication/)
+- [ActivTrak Domain Security](https://apis.io/security/activtrak/activtrak-domain-security/)
+- [ActivTrak Trust Center](https://apis.io/security/activtrak/activtrak-trust-center/)
+- [ActivTrak Vulnerability Disclosure](https://apis.io/security/activtrak/activtrak-vulnerability-disclosure/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [ActivTrak Plans Pricing](https://apis.io/plans/activtrak/activtrak-plans-pricing/)
+- [ActivTrak Price Estimates](https://apis.io/plans/activtrak/activtrak-price-estimates/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [ActivTrak Finops](https://apis.io/finops/activtrak/activtrak-finops/)
 
 ## Where to find this API
 
@@ -135,18 +154,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 49.3** — developing · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 57.8** — strong · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 73.2 |
 | Contract quality | 55.9 |
-| Contract governance | 4.5 |
-| Operational transparency | 50.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 45.2 |
 | Developer ergonomics | 47.0 |
-| Access clarity | 43.4 |
+| Access clarity | 80.9 |
 
-**Agent readiness 19.5** — agent-aware
+**Agent readiness 19.1** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -171,6 +190,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | na |
 | Operation Distinctiveness | mostly (partial credit) |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
 
